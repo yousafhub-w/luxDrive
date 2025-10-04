@@ -1,0 +1,122 @@
+<div>
+    <div class="flex justify-center w-full fixed h-auto p-2" >
+        <!-- Navigation Bar -->
+        <div class="flex items-center justify-between bg-black p-4 rounded-xl w-full gold-shadow"
+            style="border: 1px solid #D4AF37; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3)"
+            >
+            <!-- Logo and Navigation Links -->
+           <div class="flex items-center space-x-6">
+  <!-- Logo -->
+  <div class="pl-4 pt-1">
+    <a routerLink="/login">
+      <img class="w-32 h-10" src="./assets/my-logo.PNG">
+    </a>
+  </div>
+  
+  <!-- Navigation Links -->
+  <div class="hidden md:flex space-x-14 pl-10">
+    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+      <i class="fas fa-home mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> HOME
+    </a>
+    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+      <i class="fas fa-user mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> ABOUT
+    </a>
+    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+      <i class="fas fa-address-book mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> CONTACT
+    </a>
+
+    <!-- CATEGORY with Dropdown -->
+    <div class="relative">
+      <p 
+        class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center cursor-pointer"
+        (click)="toggleDropdown()"
+      >
+        <i class="fa-solid fa-car mr-2 transform transition-transform duration-300 group-hover:scale-125"></i>
+        CATEGORY
+        <i class="fas fa-chevron-down ml-2 transition-transform duration-300 hidden group-hover:block"
+           [ngClass]="{'rotate-180': dropDown}"></i>
+      </p>
+
+      <!-- Dropdown menu -->
+      <div 
+        *ngIf="dropDown"
+        class="absolute left-0 mt-2 w-48 text-white bg-gray-900 border border-yellow-500 rounded-lg shadow-lg z-10"
+      >
+        <ul class="flex flex-col">
+          <li class="px-4 py-2 hover:bg-yellow-500 hover:text-black transition-colors cursor-pointer rounded-t-lg">Interior Accessories</li>
+          <li class="px-4 py-2 hover:bg-yellow-500 hover:text-black transition-colors cursor-pointer">Exterior Accessories</li>
+          <li class="px-4 py-2 hover:bg-yellow-500 hover:text-black transition-colors cursor-pointer">Tech and Electronics</li>
+          <li class="px-4 py-2  hover:bg-yellow-500 hover:text-black transition-colors cursor-pointer rounded-b-lg">Perfomance & Utility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+            <!-- Search, Icons and Login -->
+            <div class="flex items-center space-x-10 pr-10 w-auto">
+                <!-- Search Bar -->
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        class="bg-gray-900 text-white pl-3 pr-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-500 w-48 md:w-64 transition-all duration-300"
+                    >
+                    <button><i class="fas fa-search absolute right-3 top-3 text-yellow-500 hover:scale-125 transform transition-transform duration-300"></i></button>
+                </div>
+                
+                <!-- Wishlist and Cart -->
+                <div class="flex items-center space-x-4">
+                    <!-- Wishlist -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-yellow-300 transition-colors duration-300">
+                            <i class="fas fa-heart text-xl"></i>
+                        </button>
+                        <!-- <span class="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span> -->
+                        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            Wishlist
+                        </div>
+                    </div>
+                    
+                    <!-- Cart -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-yellow-300 transition-colors duration-300">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                        </button>
+                        <!-- <span class="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">5</span> -->
+                        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            Cart
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Login Button -->
+                <button class="px-6 py-2 text-black font-semibold rounded-full hover:opacity-80 transition-opacity duration-300 flex items-center"
+                style="background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)">
+                    <i class="fas fa-user mr-2"></i> Login
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation (Hidden on larger screens) -->
+        <div class="md:hidden mt-4 flex justify-center">
+            <div class="flex space-x-6 bg-gray-900 p-3 rounded-full">
+                <a href="#" class="text-white hover:text-yellow-300 transition-colors duration-300">
+                    <i class="fas fa-home text-xl"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition-colors duration-300">
+                    <i class="fas fa-user text-xl"></i>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-300 transition-colors duration-300">
+                    <i class="fas fa-address-book text-xl"></i>
+                </a>
+            </div>
+        </div>  
+     </div>
+</div>
+
+   
+
+
+ 

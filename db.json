@@ -1,0 +1,22 @@
+{
+  "signUpUsers": [
+    {
+      "id": "2050",
+      "fullName": "ysf",
+      "email": "shbn@gmail.com",
+      "password": "12"
+    },
+    {
+      "id": "0962",
+      "fullName": "ysf",
+      "email": "jok@g",
+      "password": "1"
+    },
+    {
+      "id": "b391",
+      "fullName": "w",
+      "email": "e@g",
+      "password": "4"
+    }
+  ]
+}
