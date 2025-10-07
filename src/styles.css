@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /* ✅ For Google Chrome and Chromium browsers */
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {

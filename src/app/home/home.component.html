@@ -1,4 +1,20 @@
-<div class="bg-black h-screen">
-<app-navbar></app-navbar>
+<!-- <div class="bg-black h-screen pt-2">
+    <app-navbar class="sticky top-0 z-50 pt-5 "></app-navbar>
+    <app-swiper></app-swiper>
+    <app-products></app-products>
+
+</div> -->
+
+<!-- Full page container -->
+<div class="bg-black min-h-screen pt-2"> 
+  <!-- Adjust padding top to match navbar height -->
+
+  <!-- Fixed navbar -->
+  <app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
+
+  <!-- Page Sections -->
+  <app-swiper></app-swiper>
+  <app-products></app-products>
 </div>
+
 

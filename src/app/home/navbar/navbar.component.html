@@ -1,32 +1,26 @@
 <div>
-    <div class="flex justify-center w-full fixed h-auto p-2" >
+    <div class="flex justify-center w-full sticky h-auto p-2" >
         <!-- Navigation Bar -->
         <div class="flex items-center justify-between bg-black p-4 rounded-xl w-full gold-shadow"
             style="border: 1px solid #D4AF37; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3)"
             >
             <!-- Logo and Navigation Links -->
-           <div class="flex items-center space-x-6">
+           <div class="flex items-center space-x-6 w-full">
   <!-- Logo -->
-  <div class="pl-4 pt-1">
+  <div class="pl-6 pt-1">
     <a routerLink="/login">
       <img class="w-32 h-10" src="./assets/my-logo.PNG">
     </a>
   </div>
   
   <!-- Navigation Links -->
-  <div class="hidden md:flex space-x-14 pl-10">
-    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+  <div class="hidden md:flex space-x-12 pl-16 w-full">
+    <a routerLink="/home" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
       <i class="fas fa-home mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> HOME
-    </a>
-    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
-      <i class="fas fa-user mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> ABOUT
-    </a>
-    <a href="#" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
-      <i class="fas fa-address-book mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> CONTACT
     </a>
 
     <!-- CATEGORY with Dropdown -->
-    <div class="relative">
+    <div class="relative w-24">
       <p 
         class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center cursor-pointer"
         (click)="toggleDropdown()"
@@ -50,6 +44,14 @@
         </ul>
       </div>
     </div>
+
+     <a href="about" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+      <i class="fas fa-user mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> ABOUT
+    </a>
+
+    <a href="contact" class="group text-white hover:text-yellow-300 transition-colors duration-300 font-medium flex items-center">
+      <i class="fas fa-address-book mr-2 transform transition-transform duration-300 group-hover:scale-125"></i> CONTACT US
+    </a>
   </div>
 </div>
 
@@ -81,7 +83,7 @@
                     
                     <!-- Cart -->
                     <div class="relative group">
-                        <button class="text-white hover:text-yellow-300 transition-colors duration-300">
+                        <button routerLink="/cart" class="text-white hover:text-yellow-300 transition-colors duration-300">
                             <i class="fas fa-shopping-cart text-xl"></i>
                         </button>
                         <!-- <span class="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">5</span> -->
@@ -116,7 +118,7 @@
      </div>
 </div>
 
-   
+
 
 
  
