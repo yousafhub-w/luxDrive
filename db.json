@@ -1,37 +1,148 @@
 {
   "signUpUsers": [
     {
-      "id": "2050",
-      "fullName": "ysf",
-      "email": "shbn@gmail.com",
-      "password": "12"
+      "id": "5fdd",
+      "fullName": "Ushbeel",
+      "email": "ushbeel@gmail.com",
+      "password": "123456788",
+      "role": "user",
+      "cart": [
+        {
+          "id": "004",
+          "name": "Honda Ambient LED Lights",
+          "img": "https://www.razrindia.com/public/products/1682749772_05d3639cbb8f51e2c9c9.jpg",
+          "price": "8944",
+          "description": "This end break rule add rise size sure citizen record.",
+          "alt": "Ambient LED Lights image",
+          "category": "Interior Accessories",
+          "carbrand": "Toyota",
+          "wishlist": false,
+          "isAdded": false,
+          "quantity": 1
+        }
+      ],
+      "wishList": [
+        {
+          "id": "002",
+          "name": "Hyundai Ambient LED Lights",
+          "img": "https://ambientcarvibes.com/cdn/shop/articles/Car_Footwell_lights.jpg?v=1687960643",
+          "price": 1885,
+          "description": "Control especially arm down choose our not.",
+          "alt": "Ambient LED Lights image",
+          "category": "Interior Accessories",
+          "carbrand": "Toyota",
+          "wishlist": true,
+          "isAdded": false
+        },
+        {
+          "id": "003",
+          "name": "Toyota Ambient LED Lights",
+          "img": "https://circuitistereo.com/wp-content/uploads/2024/05/Adding-Ambient-Lighting-to-a-Car-scaled-1.jpg",
+          "price": 2763,
+          "description": "Me explain lay lot teacher early response second.",
+          "alt": "Ambient LED Lights image",
+          "category": "Interior Accessories",
+          "carbrand": "Ford",
+          "wishlist": true,
+          "isAdded": false
+        }
+      ],
+      "orders": []
     },
     {
-      "id": "0962",
-      "fullName": "ysf",
-      "email": "jok@g",
-      "password": "1"
+      "id": "042a",
+      "fullName": "abaypc",
+      "email": "abay@gmail.com",
+      "password": "77894456123",
+      "role": "user",
+      "cart": [],
+      "wishList": [],
+      "orders": []
     },
     {
-      "id": "b391",
-      "fullName": "w",
-      "email": "e@g",
-      "password": "4"
+      "id": "a6a5",
+      "fullName": "basil13",
+      "email": "basil@gmail.com",
+      "password": "123456789",
+      "role": "user",
+      "cart": [
+        {
+          "id": "002",
+          "name": "Hyundai Ambient LED Lights",
+          "img": "https://ambientcarvibes.com/cdn/shop/articles/Car_Footwell_lights.jpg?v=1687960643",
+          "price": 1885,
+          "description": "Control especially arm down choose our not.",
+          "alt": "Ambient LED Lights image",
+          "category": "Interior Accessories",
+          "carbrand": "Toyota",
+          "wishlist": false,
+          "isAdded": false,
+          "quantity": 1
+        },
+        {
+          "id": "003",
+          "name": "Toyota Ambient LED Lights",
+          "img": "https://circuitistereo.com/wp-content/uploads/2024/05/Adding-Ambient-Lighting-to-a-Car-scaled-1.jpg",
+          "price": 2763,
+          "description": "Me explain lay lot teacher early response second.",
+          "alt": "Ambient LED Lights image",
+          "category": "Interior Accessories",
+          "carbrand": "Ford",
+          "wishlist": false,
+          "isAdded": false,
+          "quantity": 1
+        }
+      ],
+      "wishList": [],
+      "orders": []
     },
     {
-      "id": "9245",
-      "fullName": "3eret",
-      "email": "rfg@gbh",
-      "password": "742"
+      "id": "7655",
+      "fullName": "Jithin",
+      "email": "jithin@gmail.com",
+      "password": "789456123",
+      "role": "user",
+      "cart": [],
+      "wishList": [],
+      "orders": []
+    },
+    {
+      "id": "d872",
+      "fullName": "Amina Hidha",
+      "email": "hidha@gmail.com",
+      "password": "789551665",
+      "role": "user",
+      "cart": [],
+      "wishList": [],
+      "orders": []
+    },
+    {
+      "id": "6e78",
+      "fullName": "Vempully",
+      "email": "vempully@gmail.com",
+      "password": "123456789999",
+      "role": "user",
+      "cart": [],
+      "wishList": [],
+      "orders": []
+    },
+    {
+      "id": "af80",
+      "fullName": "qwerty",
+      "email": "a@gmail.com",
+      "password": "a",
+      "role": "user",
+      "cart": [],
+      "wishList": [],
+      "orders": []
     }
   ],
   "products": [
-    
-  {
+    {
       "id": "001",
       "name": "Kia Ambient LED Lights",
-      "img": "https://dummyimage.com/600x400/000/fff&text=ambient-led-lights",
-      "price": "9532",
+      "img": "https://www.schott.com/-/media/project/onex/products/a/ambient-light/product-highlights/highlights-right-690x470.jpg?rev=44850f42b49741cf83055ce4e3f70e86",
+      "price": 9532,
       "description": "Rise hard money suggest church one hair card past.",
       "alt": "Ambient LED Lights image",
       "category": "Interior Accessories",
@@ -40,8 +151,8 @@
     {
       "id": "002",
       "name": "Hyundai Ambient LED Lights",
-      "img": "https://dummyimage.com/600x400/000/fff&text=ambient-led-lights",
-      "price": "1885",
+      "img": "https://ambientcarvibes.com/cdn/shop/articles/Car_Footwell_lights.jpg?v=1687960643",
+      "price": 1885,
       "description": "Control especially arm down choose our not.",
       "alt": "Ambient LED Lights image",
       "category": "Interior Accessories",
@@ -50,9 +161,9 @@
     {
       "id": "003",
       "name": "Toyota Ambient LED Lights",
-      "img": "https://dummyimage.com/600x400/000/fff&text=ambient-led-lights",
-      "price": "2763",
-      "description": "Me explain lay lot teacher early response second public health focus region and young.",
+      "img": "https://circuitistereo.com/wp-content/uploads/2024/05/Adding-Ambient-Lighting-to-a-Car-scaled-1.jpg",
+      "price": 2763,
+      "description": "Me explain lay lot teacher early response second.",
       "alt": "Ambient LED Lights image",
       "category": "Interior Accessories",
       "carbrand": "Ford"
@@ -60,7 +171,7 @@
     {
       "id": "004",
       "name": "Honda Ambient LED Lights",
-      "img": "https://dummyimage.com/600x400/000/fff&text=ambient-led-lights",
+      "img": "https://www.razrindia.com/public/products/1682749772_05d3639cbb8f51e2c9c9.jpg",
       "price": "8944",
       "description": "This end break rule add rise size sure citizen record.",
       "alt": "Ambient LED Lights image",
@@ -70,7 +181,7 @@
     {
       "id": "005",
       "name": "Mercedes Ambient LED Lights",
-      "img": "https://dummyimage.com/600x400/000/fff&text=ambient-led-lights",
+      "img": "https://circuitistereo.com/wp-content/uploads/2024/05/Adding-Ambient-Lighting-to-a-Car-scaled-1.jpg",
       "price": "9525",
       "description": "Wife cause sister trade improve national wind include forward.",
       "alt": "Ambient LED Lights image",
@@ -80,7 +191,7 @@
     {
       "id": "006",
       "name": "Kia Leather Seat Cover",
-      "img": "https://dummyimage.com/600x400/000/fff&text=leather-seat-cover",
+      "img": "https://5.imimg.com/data5/SELLER/Default/2022/12/OZ/ZT/ZM/3693396/brown-leather-car-seat-cover.jpg",
       "price": "7325",
       "description": "Leg meet fire clearly although little at tonight cost down conference red father seat town now.",
       "alt": "Leather Seat Cover image",
@@ -90,7 +201,7 @@
     {
       "id": "007",
       "name": "Hyundai Leather Seat Cover",
-      "img": "https://dummyimage.com/600x400/000/fff&text=leather-seat-cover",
+      "img": "https://images.jdmagicbox.com/quickquotes/images_main/black-lined-designed-leather-car-seat-cover-2217508387-4izis9s1.jpg",
       "price": "8841",
       "description": "Room most boy throw expect say end page left American throw happen tough check.",
       "alt": "Leather Seat Cover image",
@@ -100,7 +211,7 @@
     {
       "id": "008",
       "name": "Mercedes Leather Seat Cover",
-      "img": "https://dummyimage.com/600x400/000/fff&text=leather-seat-cover",
+      "img": "https://autoclint.com/cdn/shop/products/D69_71d50f18-bf4c-41ba-b7b0-5d8b40cfb0b6_grande.jpg?v=1640135542",
       "price": "9768",
       "description": "Thought tough culture them hundred wish weight meeting prevent.",
       "alt": "Leather Seat Cover image",
@@ -811,7 +922,7 @@
       "id": "079",
       "name": "BMW Carbon Fibres",
       "img": "https://dummyimage.com/600x400/000/fff&text=carbon-fibres",
-      "price": "8078",
+      "price": 8078,
       "description": "Notice office determine speech pick nature themselves wall.",
       "alt": "Carbon Fibres image",
       "category": "Performance Utility",
@@ -827,7 +938,5 @@
       "category": "Performance Utility",
       "carbrand": "Honda"
     }
-]
-
-  
+  ]
 }

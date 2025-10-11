@@ -1,0 +1,106 @@
+
+<div class="min-h-screen bg-black text-white py-10 px-6 md:px-20">
+  <h1 class="text-3xl md:text-5xl font-bold text-yellow-400 mb-8 text-center">
+    Checkout
+  </h1>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="confirmOrder()" class="max-w-3xl mx-auto bg-gray-900/70 p-8 rounded-xl shadow-lg space-y-6">
+
+    <!-- Full Name -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Full Name</label>
+      <input type="text" formControlName="fullName" placeholder="John Doe"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <!-- Address -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Address</label>
+      <textarea formControlName="address" rows="3" placeholder="Street, City" 
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400"></textarea>
+    </div>
+
+    <!-- Phone -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Phone Number</label>
+      <input type="tel" formControlName="phone" placeholder="9876543210"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <!-- Email (Optional) -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Email (Optional)</label>
+      <input type="email" formControlName="email" placeholder="example@gmail.com"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <!-- Landmark -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Landmark</label>
+      <input type="text" formControlName="landmark" placeholder="Near XYZ"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <!-- Pin Code -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-1">Pin Code</label>
+      <input type="text" formControlName="pinCode" placeholder="123456"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <!-- Payment Method -->
+    <div>
+      <label class="block text-yellow-400 font-semibold mb-2">Payment Method</label>
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-2">
+          <input type="radio" formControlName="paymentMethod" value="UPI" class="accent-yellow-400" /> UPI
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="radio" formControlName="paymentMethod" value="Cards" class="accent-yellow-400" /> Cards
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="radio" formControlName="paymentMethod" value="Cash on Delivery" class="accent-yellow-400" /> Cash on Delivery
+        </label>
+      </div>
+    </div>
+
+    <!-- Conditional Fields -->
+    <div *ngIf="checkoutForm.get('paymentMethod')?.value === 'UPI'">
+      <label class="block text-yellow-400 font-semibold mb-1">UPI ID</label>
+      <input type="text" formControlName="upiId" placeholder="example@upi"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+    </div>
+
+    <div *ngIf="checkoutForm.get('paymentMethod')?.value === 'Cards'">
+      <label class="block text-yellow-400 font-semibold mb-1">Card Number</label>
+      <input type="text" formControlName="cardNumber" placeholder="1234 5678 9012 3456"
+        class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400 mb-2" />
+      <div class="flex gap-4">
+        <input type="text" formControlName="expiry" placeholder="MM/YY"
+          class="w-1/2 p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+        <input type="text" formControlName="cvv" placeholder="CVV"
+          class="w-1/2 p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
+      </div>
+    </div>
+
+    <!-- Confirm Order Button -->
+    <button 
+        routerLink="/orders"
+      type="submit"
+      class="w-full py-3 mt-4 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 text-black font-bold rounded-xl hover:scale-105 transition-transform">
+      Confirm Order
+    </button>
+    
+
+  </form>
+  <div class="text-center mt-6">
+  <a 
+    routerLink="/cart"
+    class="inline-block text-yellow-400 border border-yellow-400 px-6 py-2 rounded-full 
+           hover:bg-yellow-400 hover:text-black transition-colors duration-300 font-semibold"
+  >
+    ← Return to Cart
+  </a>
+</div>
+
+</div>

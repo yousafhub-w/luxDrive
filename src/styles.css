@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Make toastr appear on top of all content */
+#toast-container {
+  z-index: 999999 !important;
+}
+
+
+body {
+  overflow: visible;
+  /* position: relative; */
+}
 
 
 /* ✅ For Google Chrome and Chromium browsers */

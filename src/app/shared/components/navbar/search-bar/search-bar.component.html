@@ -1,0 +1,12 @@
+<div class="relative">
+        <input 
+            type="text" 
+            placeholder="Search..."
+            [(ngModel)]="searchText" 
+            (ngModelChange)="onSearchChange()"
+            class="bg-gray-900 text-white pl-3 pr-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-500 w-48 md:w-64 transition-all duration-300">
+        <button 
+            (click)="onSearchChange()">
+            <i class="fas fa-search absolute right-3 top-3 text-yellow-500 hover:scale-125 transform transition-transform duration-300"></i>
+        </button>
+</div>
