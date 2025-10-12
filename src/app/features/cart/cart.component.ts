@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class CartComponent implements OnInit {
   totalQuantity: number = 0;
   currentUser: any;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(private cartService: CartService, private router: Router, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -74,13 +75,8 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder(): void {
-    if (this.cartItems.length === 0) {
-      alert('Your cart is empty.');
-      return;
-    }
-    alert('Order placed successfully!');
-    // this.cartItems = [];
-     this.router.navigate(['/checkout']);
+    this.toast.info(`Please provide your ADDRESS and PAYMENT`)
+    this.router.navigate(['/checkout']);
   }
 
 

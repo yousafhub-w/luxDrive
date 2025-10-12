@@ -1,86 +1,123 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/core/services/cart.service';
 import { TaskService } from 'src/app/core/services/task.service';
+import { WishlistService } from 'src/app/core/services/wishlist.service';
 
 @Component({
   selector: 'app-interior',
   templateUrl: './interior.component.html'
 })
-export class InteriorComponent {
-  products: any;
+export class InteriorComponent implements OnInit {
+  products: any[] = [];
+  filteredProducts: any[] = [];
   currentUser: any;
 
   constructor(
     private toast: ToastrService,
     private taskService: TaskService,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // Load current user if logged in
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
-    // Fetch all products in Interior category
-    this.taskService.getProducts().subscribe(data => {
-      const filtered = data.filter(p => p.category === "Interior Accessories");
+    if (this.currentUser) {
+      this.loadUserProducts();
+    } else {
+      this.loadGuestProducts();
+    }
+  }
 
-      if (this.currentUser) {
-        // If user is logged in, mark products already in cart
-        this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
-          this.products = filtered.map(p => ({
+  // Load products for logged-in user (filter by Interior category)
+  private loadUserProducts(): void {
+    this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
+      this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
+        this.taskService.getProducts().subscribe(data => {
+          const interiorProducts = data.filter(p => p.category === "Interior Accessories");
+          this.products = interiorProducts.map(p => ({
             ...p,
-            wishlist: false,
-            isAdded: cart.some((item: any) => item.id === p.id)
+            wishlist: wishlist.some((w: any) => w.id === p.id),
+            isAdded: cart.some((c: any) => c.id === p.id)
           }));
+          this.filteredProducts = [...this.products];
 
-          // Update cart count
           this.cartService.setCartCount(cart.length);
+          this.wishlistService.setWishCount(wishlist.length);
         });
-      } else {
-        // User not logged in → just show products, all buttons "Add to Cart" will show but won't work
-        this.products = filtered.map(p => ({
-          ...p,
-          wishlist: false,
-          isAdded: false
-        }));
-      }
+      });
     });
   }
 
-  addToCart(product: any) {
+  // Load products for guest user (Interior category only)
+  private loadGuestProducts(): void {
+    this.taskService.getProducts().subscribe(data => {
+      const interiorProducts = data.filter(p => p.category === "Interior Accessories");
+      this.products = interiorProducts.map(p => ({
+        ...p,
+        wishlist: false,
+        isAdded: false
+      }));
+      this.filteredProducts = [...this.products];
+    });
+  }
+
+  // Receive filtered search results from Navbar
+  updateFilteredProducts(results: any[]): void {
+    this.filteredProducts = results.length ? results.filter(p => p.category === "Interior Accessories") : [...this.products];
+  }
+
+  // Add product to cart
+  addToCart(product: any): void {
     if (!this.currentUser) {
-      this.toast.warning(`Please login!`)
+      this.toast.warning('Please log in to add items to cart');
       return;
     }
 
     this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
       const existing = cart.find((item: any) => item.id === product.id);
+      if (existing) existing.quantity += 1;
+      else cart.push({ ...product, quantity: 1 });
 
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ ...product, quantity: 1 });
-      }
-
-      this.cartService.addToCart(this.currentUser.id, cart).subscribe({
-        next: () => {
-          this.toast.success(`${product.name} added to your cart!`);
-          product.isAdded = true;
-          this.cartService.setCartCount(cart.length);
-        },
-        error: err => console.error('Error updating cart:', err)
+      this.cartService.addToCart(this.currentUser.id, cart).subscribe(() => {
+        product.isAdded = true;
+        this.cartService.setCartCount(cart.length);
+        this.toast.success(`${product.name} added to cart`);
       });
     });
   }
 
-  enable() {
-    this.router.navigate(['/cart']);
+  // Toggle wishlist
+  toggleWishlist(product: any): void {
+    if (!this.currentUser) {
+      this.toast.warning('Please log in to manage wishlist');
+      return;
+    }
+
+    product.wishlist = !product.wishlist;
+
+    this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
+      let updatedWishlist: any[] = [];
+
+      if (product.wishlist) {
+        updatedWishlist = [...wishlist, product];
+        this.toast.success(`${product.name} added to wishlist`);
+      } else {
+        updatedWishlist = wishlist.filter((p: any) => p.id !== product.id);
+        this.toast.info(`${product.name} removed from wishlist`);
+      }
+
+      this.wishlistService.updateWishlist(this.currentUser.id, updatedWishlist).subscribe(() => {
+        this.wishlistService.setWishCount(updatedWishlist.length);
+      });
+    });
   }
 
-  toggleWishlist(product: any) {
-    product.wishlist = !product.wishlist;
+  // Navigate to cart page
+  goToCart(): void {
+    this.router.navigate(['/cart']);
   }
 }

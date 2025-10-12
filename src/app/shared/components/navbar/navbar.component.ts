@@ -10,15 +10,14 @@ import { WishlistService } from 'src/app/core/services/wishlist.service';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
-
   dropDown: boolean = false;
-  profileDropDown:boolean = false;
+  profileDropDown: boolean = false;
   isLoggedIn: boolean = false;
   currentUser: any;
   cartCount: number = 0;
   wishlistCount: number = 0;
-  filteredProducts: any[] = [];
   products: any[] = [];
+  filteredProducts: any[] = [];
 
   constructor(
     private eRef: ElementRef,
@@ -30,95 +29,78 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    this.currentUser = localStorage.getItem('currentUser')
+  ? JSON.parse(localStorage.getItem('currentUser')!)
+  : null;
+this.isLoggedIn = !!this.currentUser;
+
+
     this.loadCartCount();
     this.loadWishlistCount();
-    // ✅ Reactively update when products are added/removed
+
     this.cartService.cartCount$.subscribe(count => this.cartCount = count);
     this.wishlistService.wishCount$.subscribe(count => this.wishlistCount = count);
 
     this.taskService.getProducts().subscribe(data => {
-    this.products = data;
-    this.filteredProducts = [...this.products]; // initially show all
-  });
+      this.products = data;
+      this.filteredProducts = [...this.products];
+    });
   }
 
-  checkLoginStatus() {
-    const user = localStorage.getItem('currentUser');
-    this.isLoggedIn = !!user;
-  }
+  toggleDropdown() { this.dropDown = !this.dropDown; }
+  toggleProfile() { this.profileDropDown = !this.profileDropDown; }
 
-  onSearch(value: string) {
-  const searchTerm = value.toLowerCase();
-  this.filteredProducts = this.products.filter(p => 
-    p.name.toLowerCase().includes(searchTerm)
+  // Handle search bar input
+  searchProducts(event: Event): void {
+  const input = event.target as HTMLInputElement | null;
+  if (!input) return; // null safety
+
+  const query = input.value.trim().toLowerCase();
+
+  // Filter products
+  this.filteredProducts = this.products.filter(p =>
+    p.name.toLowerCase().includes(query)
   );
 }
 
-  login() {
-    this.isLoggedIn = true;
+
+  cartButton() {
+    if (this.currentUser) this.router.navigate(['/cart']);
+    else this.toast.warning('Please log in to view cart');
+  }
+
+  wishlist() {
+    if (this.currentUser) this.router.navigate(['/wishlist']);
+    else this.toast.warning('Please log in to view wishlist');
+  }
+
+  loadCartCount() {
+    if (this.currentUser) {
+      this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
+        this.cartCount = cart.length;
+        this.cartService.setCartCount(cart.length);
+      });
+    }
+  }
+
+  loadWishlistCount() {
+    if (this.currentUser) {
+      this.wishlistService.getWishlist(this.currentUser.id).subscribe(wish => {
+        this.wishlistCount = wish.length;
+        this.wishlistService.setWishCount(this.wishlistCount);
+      });
+    }
   }
 
   logout() {
     localStorage.removeItem('currentUser');
     this.isLoggedIn = false;
-    this.toast.success('User logged out');
-     this.cartService.resetCartCount();
+    this.cartService.resetCartCount();
+    this.wishlistService.resetWishCount();
+    this.toast.success('Logged out successfully');
     this.router.navigate(['/login']);
   }
 
-  cartButton() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-    if (this.currentUser) {
-      this.router.navigate(['/cart']);
-    } else {
-      alert('User not logged in');
-      this.router.navigate(['/login']);
-    }
-  }
-
-  loadCartCount() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-    if (this.currentUser) {
-      this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
-        const count = cart.length; // number of distinct products
-        this.cartCount = count;
-        this.cartService.setCartCount(count);
-      });
-    }
-  }
-
-  wishlist(){
-    if (this.currentUser) {
-      this.router.navigate(['/wishlist']);
-    } else {
-      alert('User not logged in');
-      this.router.navigate(['/login']);
-    }
-  }
-
-  loadWishlistCount(){
-    if(this.currentUser){
-      this.wishlistService.getWishlist(this.currentUser.id).subscribe(wish => {
-        const count = wish.length;
-        this.wishlistCount = count;
-        this.wishlistService.setWishCount(count);
-      })
-    }else {
-    this.wishlistCount = 0;
-    this.wishlistService.resetWishCount();
-  }
-  }
-
-  toggleDropdown() {
-    this.dropDown = !this.dropDown;
-  }
-
-  toggleProfile(){
-    this.profileDropDown = !this.dropDown;
-  }
-
-  // ------ Close dropdown when clicking outside ------
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {
     if (!this.eRef.nativeElement.contains(event.target)) {

@@ -12,6 +12,7 @@ export class CheckoutComponent implements OnInit {
 
   checkoutForm!: FormGroup;
   currentUser: any;
+  cartItems: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -21,10 +22,21 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get logged in user
+    // Get current user
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
 
-    // Initialize form
+    if (!this.currentUser) {
+      this.toast.warning('Please login to continue');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Load cart items
+    this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
+      this.cartItems = cart;
+    });
+
+    // Initialize checkout form
     this.checkoutForm = this.fb.group({
       fullName: ['', Validators.required],
       address: ['', Validators.required],
@@ -39,7 +51,7 @@ export class CheckoutComponent implements OnInit {
       cvv: ['']
     });
 
-    // Update validators dynamically based on payment method
+    // Dynamic validators for payment method
     this.checkoutForm.get('paymentMethod')?.valueChanges.subscribe(method => {
       const upi = this.checkoutForm.get('upiId');
       const cardNumber = this.checkoutForm.get('cardNumber');
@@ -71,33 +83,34 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  /** Confirm order */
   confirmOrder(): void {
-    if (!this.currentUser) {
-      this.toast.warning('Please login to place order');
-      this.router.navigate(['/login']);
-      return;
-    }
-
     if (this.checkoutForm.invalid) {
       this.toast.error('Please fill all required fields correctly');
       this.checkoutForm.markAllAsTouched();
       return;
     }
 
+    if (!this.cartItems.length) {
+      this.toast.warning('Your cart is empty');
+      return;
+    }
+
     const orderData = {
-      userId: this.currentUser.id,
-      ...this.checkoutForm.value,
-      cart: [] // you can push current cart items here
+      id: new Date().getTime().toString(),
+      items: this.cartItems,
+      status: 'Processing',
+      orderDetails: this.checkoutForm.value,
+      orderedAt: new Date()
     };
 
-    // For demo: just showing success
-    this.toast.success('Order placed successfully!');
-    console.log('Order Data:', orderData);
-
-    // Reset form & navigate
-    this.checkoutForm.reset();
-    this.router.navigate(['/']);
+    this.cartService.addOrder(this.currentUser.id, orderData).subscribe({
+      next: () => {
+        this.toast.success('Order placed successfully!');
+        this.router.navigate(['/orders']);
+      },
+      error: () => {
+        this.toast.error('Something went wrong while placing the order');
+      }
+    });
   }
 }
-

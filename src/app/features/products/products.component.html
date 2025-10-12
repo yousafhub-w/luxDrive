@@ -1,3 +1,7 @@
+<!-- 🔍 Search Bar -->
+<app-search-bar (searchResults)="updateFilteredProducts($event)"></app-search-bar>
+
+<!-- ✨ Heading -->
 <div class="text-center bg-black py-14">
   <h1 class="text-4xl md:text-6xl font-[Cinzel] text-yellow-400 tracking-wide uppercase">
     Discover Premium Car Accessories
@@ -7,55 +11,59 @@
   </p>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 ">
-  <div *ngFor="let product of products" class="bg-gray-900 text-white rounded-lg shadow-lg p-4 pt-0 relative group hover:-translate-y-2 transition-transform duration-300">
-    
-    <!-- ❤️ Wishlist Icon -->
+<!-- 🛒 Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+  <div
+    *ngFor="let product of filteredProducts"
+    class="bg-gray-900 text-white rounded-lg shadow-lg p-4 pt-0 relative group hover:-translate-y-2 transition-transform duration-300"
+  >
+    <!-- ❤️ Wishlist -->
     <button
-  (click)="toggleWishlist(product)"
-  class="absolute right-1 text-xl transition-transform duration-200 hover:scale-110"
->
-  <i
-    class="fa-heart"
-    [ngClass]="{
-      'fas text-red-500': product.wishlist, 
-      'far text-white': !product.wishlist
-    }"
-  ></i>
-</button>
- <div class="pt-4">
-    <img [src]="product.img" [alt]="product.alt" 
-         class="w-80 h-44 object-cover rounded mb-4" />
-    
-    <h2 class="text-lg font-bold">{{ product.name }}</h2>
-    <p class="text-sm text-gray-400 mb-2">{{ product.description }}</p>
-    
-    <div class="flex justify-between items-center text-amber-400 font-semibold mb-4">
-      ₹{{ product.price }}
-      <span class="text-xs text-white bg-amber-600 px-2 py-1 rounded">{{ product.carbrand }}</span>
-    </div>
-
-    <!-- Add to Cart Button -->
-    <button 
-      *ngIf="!product.isAdded"
-      (click)="addToCart(product)" 
-      class="w-full bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-700 text-black font-semibold py-2 rounded transition-colors">
-      Add to Cart
+      (click)="toggleWishlist(product)"
+      class="absolute right-1 text-xl transition-transform duration-200 hover:scale-110"
+    >
+      <i
+        class="fa-heart"
+        [ngClass]="{
+          'fas text-red-500': product.wishlist,
+          'far text-white': !product.wishlist
+        }"
+      ></i>
     </button>
 
-    <!-- Go to Cart Button -->
-    <button 
-      routerLink="/cart"
-      *ngIf="product.isAdded"
-      (click)="enable()" 
-      class="w-full bg-gradient-to-r from-indigo-700 via-blue-600 to-indigo-700 
-             hover:brightness-110 hover:scale-[1.02] 
-             text-white font-semibold py-2 rounded 
-             transition-all duration-500 shadow-md">
-      Go To Cart
-    </button>
+    <div class="pt-4">
+      <img
+        [src]="product.img"
+        [alt]="product.alt"
+        class="w-80 h-44 object-cover rounded mb-4"
+      />
 
+      <h2 class="text-lg font-bold">{{ product.name }}</h2>
+      <p class="text-sm text-gray-400 mb-2">{{ product.description }}</p>
+
+      <div class="flex justify-between items-center text-amber-400 font-semibold mb-4">
+        ₹{{ product.price }}
+        <span class="text-xs text-white bg-amber-600 px-2 py-1 rounded">
+          {{ product.carbrand }}
+        </span>
+      </div>
+
+      <!-- Add / Go to Cart -->
+      <button
+        *ngIf="!product.isAdded"
+        (click)="addToCart(product)"
+        class="w-full bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-700 text-black font-semibold py-2 rounded transition-colors"
+      >
+        Add to Cart
+      </button>
+
+      <button
+        *ngIf="product.isAdded"
+        routerLink="/cart"
+        class="w-full bg-gradient-to-r from-indigo-700 via-blue-600 to-indigo-700 hover:brightness-110 hover:scale-[1.02] text-white font-semibold py-2 rounded transition-all duration-500 shadow-md"
+      >
+        Go To Cart
+      </button>
     </div>
-
   </div>
 </div>

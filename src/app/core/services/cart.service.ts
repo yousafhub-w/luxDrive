@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,13 +37,40 @@ export class CartService {
   addToCart(userId: string, updatedCart: any[]): Observable<any> {
     return this.http.patch(`${this.baseUrl}/${userId}`, { cart: updatedCart }).pipe(
       tap(() => this.cartUpdated$.next())
-    )
+    );
   }
 
   /** Remove or update product from cart */
   updateCart(userId: string, updatedCart: any[]): Observable<any> {
     return this.http.patch(`${this.baseUrl}/${userId}`, { cart: updatedCart }).pipe(
-    tap(() => this.cartUpdated$.next())
-  )
+      tap(() => this.cartUpdated$.next())
+    );
+  }
+
+  /** ------------------ Orders functionality ------------------ */
+
+  /** Get user's orders */
+  getUserOrders(userId: string): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/${userId}`).pipe(
+      map(user => user.orders || [])
+    );
+  }
+
+  /** Add new order and clear cart */
+  addOrder(userId: string, orderData: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${userId}`).pipe(
+      switchMap(user => {
+        const currentOrders = user.orders || [];
+        const newOrders = [...currentOrders, orderData];
+
+        // Patch orders and empty cart
+        return this.http.patch(`${this.baseUrl}/${userId}`, { 
+          orders: newOrders,
+          cart: [] 
+        }).pipe(
+          tap(() => this.cartUpdated$.next())
+        );
+      })
+    );
   }
 }

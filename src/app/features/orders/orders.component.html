@@ -1,6 +1,42 @@
-<div class="min-h-screen bg-black text-white pt-2">
-      <app-navbar class="sticky top-0 z-50 pt-2 bg-black bg-opacity-90 backdrop-blur-md"></app-navbar>
-      <h1 class="text-3xl md:text-5xl font-bold text-yellow-400 mb-8 text-center">
-    ORDERS..
+<div class="min-h-screen bg-black text-white py-10 px-6 md:px-20">
+  <h1 class="text-3xl md:text-5xl font-bold text-yellow-400 mb-8 text-center">
+    My Orders
   </h1>
-</div>    
+
+  <div *ngIf="orders.length === 0" class="text-center text-gray-400">
+    You have no orders yet.
+  </div>
+
+  <div class="space-y-6">
+    <div *ngFor="let order of orders" class="bg-gray-900/70 p-6 rounded-xl shadow-lg">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-yellow-400">Order #{{order.id}}</h2>
+        <span class="px-3 py-1 rounded-full text-black font-semibold" 
+              [ngClass]="{
+                'bg-yellow-400': order.status === 'Processing',
+                'bg-green-500': order.status === 'Completed',
+                'bg-red-500': order.status === 'Cancelled'
+              }">{{order.status}}</span>
+      </div>
+      <p class="text-gray-300 mb-2">Ordered At: {{order.orderedAt | date:'medium'}}</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div *ngFor="let item of order.items" class="bg-gray-800 p-3 rounded flex flex-col items-center">
+          <img [src]="item.img" [alt]="item.name" class="w-32 h-32 object-cover rounded mb-2"/>
+          <h3 class="text-white font-semibold">{{item.name}}</h3>
+          <p class="text-yellow-400 font-bold">₹{{item.price}}</p>
+          <p class="text-gray-300">Qty: {{item.quantity}}</p>
+        </div>
+      </div>
+
+      <div class="mt-4 text-gray-300">
+        <h4 class="font-semibold text-yellow-400 mb-2">Shipping Details:</h4>
+        <p>Name: {{order.orderDetails.fullName}}</p>
+        <p>Address: {{order.orderDetails.address}}, {{order.orderDetails.landmark}}, Pin: {{order.orderDetails.pinCode}}</p>
+        <p>Phone: {{order.orderDetails.phone}}</p>
+        <p>Email: {{order.orderDetails.email || 'N/A'}}</p>
+        <p>Payment Method: {{order.orderDetails.paymentMethod}}</p>
+      </div>
+    </div>
+  </div>
+</div>

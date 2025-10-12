@@ -44,7 +44,7 @@
 
     <!-- Right: Order Summary -->
    <!-- Right: Order Summary -->
-<div class="lg:col-span-1 p-6 bg-gray-900/60 rounded-xl flex flex-col gap-6 mt-12 sticky top-44 h-64">
+<div *ngIf="cartItems.length !== 0" class="lg:col-span-1 p-6 bg-gray-900/60 rounded-xl flex flex-col gap-6 mt-12 sticky top-44 h-64">
   <h2 class="text-xl font-bold text-yellow-400">Order Summary</h2>
 
   <div class="flex justify-between">

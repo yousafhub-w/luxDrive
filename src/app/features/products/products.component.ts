@@ -11,6 +11,7 @@ import { WishlistService } from 'src/app/core/services/wishlist.service';
 })
 export class ProductsComponent implements OnInit {
   products: any[] = [];
+  filteredProducts: any[] = [];
   currentUser: any;
 
   constructor(
@@ -22,37 +23,48 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
-  if (this.currentUser) {
-    // Logged in: fetch cart & wishlist
+    if (this.currentUser) {
+      this.loadUserProducts();
+    } else {
+      this.loadGuestProducts();
+    }
+  }
+
+  private loadUserProducts(): void {
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
-
       this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
         this.taskService.getProducts().subscribe(data => {
-          this.products = data.map(p => ({
+          this.products = data.map((p: any) => ({
             ...p,
             wishlist: wishlist.some((w: any) => w.id === p.id),
             isAdded: cart.some((c: any) => c.id === p.id)
           }));
+          this.filteredProducts = [...this.products];
 
           this.cartService.setCartCount(cart.length);
           this.wishlistService.setWishCount(wishlist.length);
         });
       });
     });
-  } else {
-    // Not logged in: show products only
+  }
+
+  private loadGuestProducts(): void {
     this.taskService.getProducts().subscribe(data => {
-      this.products = data.map(p => ({
+      this.products = data.map((p: any) => ({
         ...p,
         wishlist: false,
         isAdded: false
       }));
+      this.filteredProducts = [...this.products];
     });
   }
-}
 
+  // Receive search results from Navbar
+  updateFilteredProducts(results: any[]): void {
+    this.filteredProducts = results.length ? results : [];
+  }
 
   addToCart(product: any): void {
     if (!this.currentUser) {
@@ -61,18 +73,13 @@ export class ProductsComponent implements OnInit {
     }
 
     this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
-      const updatedCart = [...cart];
-      const existing = updatedCart.find((i: any) => i.id === product.id);
+      const existing = cart.find((item: any) => item.id === product.id);
+      if (existing) existing.quantity += 1;
+      else cart.push({ ...product, quantity: 1 });
 
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        updatedCart.push({ ...product, quantity: 1 });
-      }
-
-      this.cartService.addToCart(this.currentUser.id, updatedCart).subscribe(() => {
+      this.cartService.addToCart(this.currentUser.id, cart).subscribe(() => {
         product.isAdded = true;
-        this.cartService.setCartCount(updatedCart.length);
+        this.cartService.setCartCount(cart.length);
         this.toast.success(`${product.name} added to cart`);
       });
     });
@@ -87,24 +94,23 @@ export class ProductsComponent implements OnInit {
     product.wishlist = !product.wishlist;
 
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
-  let updatedWishlist = [...wishlist];
-        
+      let updatedWishlist: any[] = [];
 
       if (product.wishlist) {
-        wishlist.push(product);
+        updatedWishlist = [...wishlist, product];
         this.toast.success(`${product.name} added to wishlist`);
       } else {
-        wishlist = wishlist.filter((p: any) => p.id !== product.id);
+        updatedWishlist = wishlist.filter((p: any) => p.id !== product.id);
         this.toast.info(`${product.name} removed from wishlist`);
       }
 
-      this.wishlistService.updateWishlist(this.currentUser.id, wishlist).subscribe(() => {
-        this.wishlistService.setWishCount(wishlist.length); // ✅ update live count
+      this.wishlistService.updateWishlist(this.currentUser.id, updatedWishlist).subscribe(() => {
+        this.wishlistService.setWishCount(updatedWishlist.length);
       });
     });
   }
 
-  enable(): void {
+  goToCart(): void {
     this.router.navigate(['/cart']);
   }
 }
