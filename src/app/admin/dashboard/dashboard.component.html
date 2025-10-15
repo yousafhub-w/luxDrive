@@ -1,0 +1,26 @@
+<div class="p-5 space-y-10">
+  <h1 class="text-3xl font-bold text-amber-500">Admin Dashboard</h1>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- Bar Chart -->
+    <div class="bg-white p-5 rounded shadow">
+      <h2 class="text-xl font-bold mb-3">Bar Chart</h2>
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [type]="barChartType"
+        [options]="barChartOptions"
+      ></canvas>
+    </div>
+
+    <!-- Donut Chart -->
+    <div class="bg-white p-5 rounded shadow">
+      <h2 class="text-xl font-bold mb-3">Donut Chart</h2>
+      <canvas
+        baseChart
+        [data]="doughnutChartData"
+        [type]="doughnutChartType"
+      ></canvas>
+    </div>
+  </div>
+</div>

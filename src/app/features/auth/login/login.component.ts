@@ -29,21 +29,40 @@ export class LoginComponent implements OnInit{
 
   this.http.get<any[]>('http://localhost:3000/signUpUsers').subscribe({
     next: (users) => {
-      // ✅ Find the single user that matches email & password
-      const foundUser = users.find(
+      const foundAdmin = users.find(
         (u) =>
           u.email === this.loginForm.value.email &&
-          u.password === this.loginForm.value.password
+          u.password === this.loginForm.value.password &&
+          u.role === "admin"
       );
+      const checkUser = users.find( v => 
+        v.email === this.loginForm.value.email &&
+        v.password === this.loginForm.value.password &&
+        v.role === "user" 
+      )
 
-      if (foundUser) {
-        // ✅ Store single user (not array)
-        localStorage.setItem('currentUser', JSON.stringify(foundUser));
+      const checkStatus = users.find( w =>
+        w.status === "inactive"
+      )
 
+      if(checkStatus){
+        this.toast.error(`User Blocked by Admin`)
+        this.router.navigate(['/unauthorised'])
+
+      }else if (checkUser) {
+        
+        localStorage.setItem('currentUser', JSON.stringify(checkUser));
         this.toast.success(`Login Successful`)
         this.loginForm.reset();
         this.router.navigate(['/']);
-      } else {
+
+      }else if(foundAdmin){
+        localStorage.setItem('email', foundAdmin.email)
+        localStorage.setItem('role', foundAdmin.role)
+        this.router.navigate(['/admin']);
+        this.toast.success(`Admin Logged in Successful`);
+
+      }else {
         this.toast.error(`User Not Found`)
         this.loginForm.reset();
         this.submitted = false;

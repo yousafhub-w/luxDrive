@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit{
       email:['',[Validators.required, Validators.email]],
       password:['',Validators.required],
       role:["user"],
+      status:["active"],
       cart:[[]],
       wishList:[[]],
       orders:[[]]

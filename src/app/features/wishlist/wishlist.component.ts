@@ -22,6 +22,15 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+
+    if(!this.currentUser){
+      this.toast.warning(`Please Login`);
+      setTimeout(()=>{
+        this.router.navigate(['/login']);
+      })
+      
+    }
+
     if (this.currentUser) {
       this.loadWishlist();
       this.cartService.cartUpdated$.subscribe(() => {

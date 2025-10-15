@@ -6,7 +6,7 @@ import { TaskService } from 'src/app/core/services/task.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
 
 @Component({
-  selector: 'app-interior',
+  selector: 'app-tech',
   templateUrl: './tech.component.html'
 })
 export class TechComponent implements OnInit {

@@ -1,0 +1,62 @@
+<div class="bg-black min-h-screen pt-2"> 
+<app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
+
+<div class=" pt-5 text-white flex flex-col justify-center items-center ">
+  <!-- Title -->
+  <div class="text-center mb-5">
+    <h1 class="text-5xl font-bold text-yellow-400 mb-2 tracking-wide">Profile</h1>
+    <p class="text-gray-400 text-lg">Manage your account details securely</p>
+  </div>
+
+  <!-- Profile Card -->
+  <div
+    *ngIf="user"
+    class="w-full max-w-md bg-gray-900/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-yellow-600"
+  >
+    <div class="flex flex-col items-center mb-6">
+      <div class="w-24 h-24 bg-yellow-400 text-black rounded-full flex items-center justify-center text-3xl font-bold mb-3">
+        {{ user.fullName.charAt(0).toUpperCase() }}
+      </div>
+      <h2 class="text-2xl font-semibold text-yellow-400">{{ user.fullName + ' ✅'}}</h2>
+      <p class="text-gray-400 text-sm mt-1">Registered User</p>
+    </div>
+
+    <div class="space-y-4 text-sm">
+      <div class="flex justify-between border-b border-gray-700 pb-3">
+        <span class="text-gray-400 font-medium">Full Name</span>
+        <span class="text-yellow-400">{{ user.fullName }}</span>
+      </div>
+
+      <div class="flex justify-between border-b border-gray-700 pb-3">
+        <span class="text-gray-400 font-medium">Email</span>
+        <span class="text-yellow-400">{{ user.email }}</span>
+      </div>
+
+      <div class="flex justify-between border-b border-gray-700 pb-3">
+        <span class="text-gray-400 font-medium">Password</span>
+        <span class="text-yellow-400">{{ user.password }}</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mt-8 flex justify-center gap-4">
+      <button
+        class="px-6 py-2 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-yellow-400/10"
+      >
+        Edit Profile
+      </button>
+      
+    </div>
+  </div>
+
+  <!-- No user found -->
+  <div *ngIf="!user" class="text-gray-500 text-lg mt-10">
+    Loading profile...
+  </div>
+</div>
+
+
+
+
+
+<!-- </div> -->

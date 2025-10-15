@@ -18,9 +18,21 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-    if (this.currentUser) {
+
+    if (!this.currentUser) {
+      this.toast.warning('Please login');
+      setTimeout(()=>{
+        this.router.navigate(['/login']);
+      })
+      
+    }
+
+    if(this.currentUser){
       this.loadCart();
-    } 
+    }
+      
+    
+    
   }
 
   loadCart(): void {

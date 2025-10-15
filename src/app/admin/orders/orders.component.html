@@ -1,0 +1,50 @@
+<div class="p-5 space-y-10">
+  <h1 class="text-3xl font-bold text-amber-500 mb-5">Manage Orders</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white rounded shadow">
+      <thead>
+        <tr class="bg-gray-800 text-white">
+          <th class="py-3 px-6 text-left">Order ID</th>
+          <th class="py-3 px-6 text-left">User</th>
+          <th class="py-3 px-6 text-left">Products</th>
+          <th class="py-3 px-6 text-left">Total</th>
+          <th class="py-3 px-6 text-left">Status</th>
+          <th class="py-3 px-6 text-left">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" class="border-b">
+          <td class="py-3 px-6">{{ order.id }}</td>
+          <td class="py-3 px-6">{{ order.userName }}</td>
+          <td class="py-3 px-6">
+            <ul>
+              <li *ngFor="let p of order.products">
+                {{ p.name }} x {{ p.quantity }}
+              </li>
+            </ul>
+          </td>
+          <td class="py-3 px-6">{{ order.total }}</td>
+          <td class="py-3 px-6">
+            <span 
+              [ngClass]="{
+                'text-green-600 font-bold': order.status === 'delivered',
+                'text-yellow-600 font-bold': order.status === 'processing' || order.status === 'shipped',
+                'text-red-600 font-bold': order.status === 'cancelled'
+              }">
+              {{ order.status }}
+            </span>
+          </td>
+          <td class="py-3 px-6">
+            <select 
+              [(ngModel)]="order.status" 
+              (change)="changeStatus(order, order.status)"
+              class="border p-2 rounded">
+              <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

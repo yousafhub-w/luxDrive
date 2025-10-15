@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser')!)
   : null;
-this.isLoggedIn = !!this.currentUser;
+  this.isLoggedIn = !!this.currentUser;
 
 
     this.loadCartCount();

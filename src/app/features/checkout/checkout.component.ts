@@ -14,6 +14,9 @@ export class CheckoutComponent implements OnInit {
   currentUser: any;
   cartItems: any[] = [];
 
+   orderPlaced = false; 
+  formTouched = true;
+
   constructor(
     private fb: FormBuilder,
     private toast: ToastrService,
@@ -113,4 +116,5 @@ export class CheckoutComponent implements OnInit {
       }
     });
   }
+
 }

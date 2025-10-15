@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { LoginComponent } from './features/auth/login/login.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SwiperComponent } from './features/swiper/swiper.component';
@@ -25,6 +23,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { OrdersComponent } from './features/orders/orders.component';
 import { SearchBarComponent } from './shared/components/navbar/search-bar/search-bar.component';
+import { ContactComponent } from './features/contact/contact.component';
+import { ProfileComponent } from './features/profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { UnauthorisedComponent } from './features/unauthorised/unauthorised.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UsersComponent } from './admin/users/users.component';
+import { AdminOrdersComponent } from './admin/orders/orders.component';
+import { AdminProductsComponent } from './admin/products/products.component';
+import { NgChartsModule } from 'ng2-charts';
+ 
 
 
 
@@ -48,7 +56,15 @@ import { SearchBarComponent } from './shared/components/navbar/search-bar/search
     PerformanceComponent,
     CheckoutComponent,
     OrdersComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ContactComponent,
+    ProfileComponent,
+    AdminComponent,
+    UnauthorisedComponent,
+    DashboardComponent,
+    UsersComponent,
+    AdminOrdersComponent,
+    AdminProductsComponent
  
   ],
   imports: [
@@ -58,6 +74,7 @@ import { SearchBarComponent } from './shared/components/navbar/search-bar/search
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgChartsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
