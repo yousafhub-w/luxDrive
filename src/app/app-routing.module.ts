@@ -28,18 +28,19 @@ import { AdminOrdersComponent } from './admin/orders/orders.component';
 
 
 const routes: Routes = [
+  
   { 
     path: 'admin',
     component:AdminComponent,
-    canActivate: [AdminGuard],
+    
     children:[
-      { path: 'dashboard', component:DashboardComponent},
+      { path: 'dashboard', component:DashboardComponent,canActivate: [AdminGuard]},
       { path: 'users', component:UsersComponent},
       { path: 'products', component:AdminProductsComponent},
       { path: 'orders', component:AdminOrdersComponent}
     ],
   },
-    
+  
   { path: '', component:HomeComponent},
   { path: 'login', component:LoginComponent,canActivate: [GuestGuard]},
   { path: 'register', component:RegisterComponent},

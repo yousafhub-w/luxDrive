@@ -61,10 +61,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  // Receive search results from Navbar
-  updateFilteredProducts(results: any[]): void {
-    this.filteredProducts = results.length ? results : [];
-  }
 
   addToCart(product: any): void {
     if (!this.currentUser) {

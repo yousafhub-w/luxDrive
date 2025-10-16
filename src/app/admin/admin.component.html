@@ -10,18 +10,17 @@
     </button>
   </div>
 
-  <!-- Body: Sidebar + Main Content -->
   <div class="flex flex-1">
     <!-- Sidebar -->
-    <div class="bg-red-600 w-1/5 h-screen flex flex-col text-black p-5 space-y-4">
+    <div class="bg-gray-600 w-1/5 h-screen flex flex-col text-black p-5 space-y-4  sticky top-20">
       <a routerLink="dashboard" routerLinkActive="text-amber-500 font-bold">DASHBOARD</a>
       <a routerLink="users" routerLinkActive="text-amber-500 font-bold">USERS</a>
       <a routerLink="products" routerLinkActive="text-amber-500 font-bold">PRODUCTS</a>
       <a routerLink="orders" routerLinkActive="text-amber-500 font-bold">ORDERS</a>
     </div>
 
-    <!-- Main content -->
     <div class="flex-1 p-5 overflow-auto bg-gray-100">
+
       <router-outlet></router-outlet>
     </div>
   </div>

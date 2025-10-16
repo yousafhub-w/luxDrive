@@ -19,18 +19,18 @@
           <td class="py-3 px-6">{{ order.userName }}</td>
           <td class="py-3 px-6">
             <ul>
-              <li *ngFor="let p of order.products">
+              <li *ngFor="let p of order.items">
                 {{ p.name }} x {{ p.quantity }}
               </li>
             </ul>
           </td>
-          <td class="py-3 px-6">{{ order.total }}</td>
+          <td class="py-3 px-6">{{ order.totalQuantity }}</td>
           <td class="py-3 px-6">
             <span 
               [ngClass]="{
-                'text-green-600 font-bold': order.status === 'delivered',
-                'text-yellow-600 font-bold': order.status === 'processing' || order.status === 'shipped',
-                'text-red-600 font-bold': order.status === 'cancelled'
+                'text-green-600 font-bold': order.status === 'Delivered',
+                'text-yellow-600 font-bold': order.status === 'Processing' || order.status === 'Shipped',
+                'text-red-600 font-bold': order.status === 'Cancelled'
               }">
               {{ order.status }}
             </span>

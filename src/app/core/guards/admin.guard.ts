@@ -14,7 +14,7 @@ export class AdminGuard implements CanActivate {
       return true;
     } else {
       this.router.navigate(['/unauthorised']);
-      return false; 
+      return false;
     }
   }
 }

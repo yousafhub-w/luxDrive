@@ -15,8 +15,8 @@
         <h2 class="text-xl font-semibold text-yellow-400">Order #{{order.id}}</h2>
         <span class="px-3 py-1 rounded-full text-black font-semibold" 
               [ngClass]="{
-                'bg-yellow-400': order.status === 'Processing',
-                'bg-green-500': order.status === 'Completed',
+                'bg-yellow-400': order.status === 'Processing' || order.status === 'Shipped',
+                'bg-green-500': order.status === 'Delivered',
                 'bg-red-500': order.status === 'Cancelled'
               }">{{order.status}}</span>
       </div>

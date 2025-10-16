@@ -10,43 +10,54 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/products`);
-  }
-
+  // ---------- USERS ----------
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/signUpUsers`);
   }
 
-  getOrders(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/orders`);
-  }
   updateUserStatus(userId: string, status: string): Observable<any> {
     return this.http.patch(`${this.apiUrl}/signUpUsers/${userId}`, { status });
   }
 
+  // ---------- PRODUCTS ----------
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products`);
+  }
 
-
- 
-
-  // Add product
   addProduct(product: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/products`, product);
   }
 
-  // Delete product
   deleteProduct(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/products/${id}`);
   }
 
-
-  // Update order status
-  updateOrderStatus(orderId: string, status: string): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/orders/${orderId}`, { status });
+  // ---------- ORDERS ----------
+  getOrders(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/orders`);
   }
 
-  // Optional: get single user orders if needed
+  updateOrderStatus(orderId: string, status: string): Observable<any> {
+    // Dummy update method used by admin for triggering local update
+    return new Observable(observer => {
+      observer.next({ orderId, status });
+      observer.complete();
+    });
+  }
+
+  // ---------- USER ORDERS ----------
   getUserOrders(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/orders?userId=${userId}`);
+  }
+
+  // ---------- ADDITIONS (NEW METHODS) ----------
+  // ✅ Get single user by ID
+  getUserById(userId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/signUpUsers/${userId}`);
+  }
+
+  // ✅ Update entire user (used to update orders array in db.json)
+  updateUserOrders(userId: string, updatedUser: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/signUpUsers/${userId}`, updatedUser);
   }
 }

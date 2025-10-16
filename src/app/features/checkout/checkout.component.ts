@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     const orderData = {
-      id: new Date().getTime().toString(),
+      id:  Date.now().toString(),
       items: this.cartItems,
       status: 'Processing',
       orderDetails: this.checkoutForm.value,
