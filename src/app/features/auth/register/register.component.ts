@@ -39,12 +39,12 @@ export class RegisterComponent implements OnInit{
 
       const fullName = this.signUpForm.get('fullName')?.value;
       if(fullName && fullName.length < 5){
-        alert('Full Name must be atleast 5 characters long')
+        this.toast.warning('Full Name must be atleast 5 characters long');
       }
 
       const password = this.signUpForm.get('password')?.value;
     if (password && password.length < 6) {
-      alert('Password must be at least 8 characters long');
+      this.toast.warning('Password must be at least 8 characters long')
     }
       return;
      }  
@@ -52,13 +52,13 @@ export class RegisterComponent implements OnInit{
      const email = this.signUpForm.get('email')?.value;
 
         if (!email.endsWith('@gmail.com')) {
-        alert('Only Gmail addresses are allowed for registration');
+        this.toast.warning('Only Gmail addresses are allowed for registration')
         return;
         }
 
      this.http.get<any[]>(`http://localhost:3000/signUpUsers?email=${email}`).subscribe(users => {
       if (users.length > 0) {
-        alert('User already exists');
+        this.toast.error('User already exists')
         this.signUpForm.reset();
       } else {
       
@@ -69,11 +69,11 @@ export class RegisterComponent implements OnInit{
           this.toast.success('Successfully registered')
           this.router.navigate(['/']);
         }, err => {
-          alert('Something went wrong');
+          this.toast.error('Something went wrong')
         });
     }
   }, err => {
-    alert('Something went wrong');
+    this.toast.error('Something went wrong')
   });
 
 

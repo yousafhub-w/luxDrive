@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit{
       )
 
       const checkStatus = users.find( w =>
+        w.email === this.loginForm.value.email &&
+        w.password === this.loginForm.value.password &&
+        w.role === "user" &&
         w.status === "inactive"
       )
 
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit{
       }else if(foundAdmin){
         localStorage.setItem('email', foundAdmin.email)
         localStorage.setItem('role', foundAdmin.role)
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin']);
         this.toast.success(`Admin Logged in Successful`);
 
       }else {

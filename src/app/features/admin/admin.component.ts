@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChartOptions, ChartType, ChartData, ChartDataset } from 'chart.js';
 import { AdminService } from 'src/app/core/services/admin.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
 })
-export class DashboardComponent implements OnInit {
+export class AdminComponent implements OnInit {
+
+  
 
   productsCount = 0;
   usersCount = 0;
@@ -39,7 +42,7 @@ export class DashboardComponent implements OnInit {
     ],
   };
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.adminService.getProducts().subscribe((res) => {
@@ -57,20 +60,42 @@ export class DashboardComponent implements OnInit {
       this.updateCharts();
     });
   }
-
+ 
   updateCharts() {
-    // Update Bar Chart
+   
     this.barChartData.datasets[0].data = [
       this.productsCount,
       this.usersCount,
       this.ordersCount,
     ];
 
-    // Update Donut Chart
     this.doughnutChartData.datasets[0].data = [
       this.productsCount,
       this.usersCount,
       this.ordersCount,
     ];
+
+    
+  }
+
+  navigateUsers(){
+    this.router.navigate(['admin/users'])
+  }
+
+  navigateDashboard(){
+    this.router.navigate(['/admin'])
+  }
+
+  navigateProducts(){
+    this.router.navigate(['/admin/products'])
+  }
+
+  navigateOrders(){
+    this.router.navigate(['/admin/orders'])
+  }
+
+  logout(){
+    localStorage.clear()
+    this.router.navigate(['/login'])
   }
 }

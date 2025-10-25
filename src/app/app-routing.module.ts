@@ -17,44 +17,57 @@ import { CheckoutComponent } from './features/checkout/checkout.component';
 import { OrdersComponent } from './features/orders/orders.component';
 import { ContactComponent } from './features/contact/contact.component';
 import { ProfileComponent } from './features/profile/profile.component';
-import { AdminComponent } from './admin/admin.component';
+// import { AdminComponent } from './admin/admin.component';
 import { UnauthorisedComponent } from './features/unauthorised/unauthorised.component';
 import { AdminGuard } from './core/guards/admin.guard';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { UsersComponent } from './admin/users/users.component';
-import { AdminProductsComponent } from './admin/products/products.component';
-import { AdminOrdersComponent } from './admin/orders/orders.component';
+import { AdminComponent } from './features/admin/admin.component';
+import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
+import { UsersComponent } from './features/admin/users/users.component';
+import { AdminProductsComponent } from './features/admin/products/products.component';
+import { AdminOrdersComponent } from './features/admin/orders/orders.component';
+// import { DashboardComponent } from './admin/dashboard/dashboard.component';
+// import { UsersComponent } from './admin/users/users.component';
+// import { AdminProductsComponent } from './admin/products/products.component';
+// import { AdminOrdersComponent } from './admin/orders/orders.component';
 
 
 
 const routes: Routes = [
   
-  { 
-    path: 'admin',
-    component:AdminComponent,
+  { path: 'admin',component:DashboardComponent,canActivate: [AdminGuard]},
+  { path: 'admin/users', component:UsersComponent},
+  { path: 'admin/products', component:AdminProductsComponent},
+  { path: 'admin/orders', component:AdminOrdersComponent},
     
-    children:[
-      { path: 'dashboard', component:DashboardComponent,canActivate: [AdminGuard]},
-      { path: 'users', component:UsersComponent},
-      { path: 'products', component:AdminProductsComponent},
-      { path: 'orders', component:AdminOrdersComponent}
-    ],
-  },
   
-  { path: '', component:HomeComponent},
+  // { path: '', component:HomeComponent},
   { path: 'login', component:LoginComponent,canActivate: [GuestGuard]},
   { path: 'register', component:RegisterComponent},
-  { path: 'about', component:AboutComponent},
-  { path: 'cart', component:CartComponent, },
-  { path: 'wishlist', component:WishlistComponent},
-  { path: 'interior',component:InteriorComponent},
-  { path: 'exterior',component:ExteriorComponent},
-  { path: 'tech',component:TechComponent},
-  { path: 'performance',component:PerformanceComponent},
+
+  { path: 'about', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule)},
+  { path: 'cart', loadChildren: () => import('./features/cart/cart.module').then(m => m.CartModule)},
+  { path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule)},
+  { path: 'orders', loadChildren: () => import('./features/orders/orders.module').then(m => m.OrdersModule)},
+  { path: 'exterior', loadChildren: () => import('./features/products/exterior/exterior.module').then(m => m.ExteriorModule)},
+  { path: 'interior', loadChildren: () => import('./features/products/interior/interior.module').then(m => m.InteriorModule)},
+  { path: 'performance', loadChildren: () => import('./features/products/performance/performance.module').then(m => m.PerformanceModule)},
+  { path: 'tech', loadChildren: () => import('./features/products/tech/tech.module').then(m => m.TechModule)},
+  { path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
+  { path: 'wishlist', loadChildren: () => import('./features/wishlist/wishlist.module').then(m => m.WishlistModule)},
+  { path: '', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)},
+
+
+  // { path: 'cart', component:CartComponent},
+
+  // { path: 'wishlist', component:WishlistComponent},
+  // { path: 'interior',component:InteriorComponent},
+  // { path: 'exterior',component:ExteriorComponent},
+  // { path: 'tech',component:TechComponent},
+  // { path: 'performance',component:PerformanceComponent},
   { path: 'checkout', component:CheckoutComponent},
-  { path: 'orders', component:OrdersComponent},
-  { path: 'contact', component:ContactComponent},
-  { path: 'profile', component:ProfileComponent},
+  // { path: 'orders', component:OrdersComponent},
+  // { path: 'contact', component:ContactComponent},
+  // { path: 'profile', component:ProfileComponent},
   { path: 'unauthorised', component:UnauthorisedComponent},
 
   { path: '**', component:NotfoundComponent}

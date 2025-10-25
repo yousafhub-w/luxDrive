@@ -1,0 +1,30 @@
+<app-admin>
+  <div class=" w-full">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">Admin Dashboard</h1>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">Bar Chart</h2>
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [type]="barChartType"
+          [options]="barChartOptions"
+        ></canvas>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-xl font-bold mb-3 text-gray-800">Donut Chart</h2>
+        <canvas
+          baseChart
+          [data]="doughnutChartData"
+          [type]="doughnutChartType"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+</app-admin>
+
+
+
+

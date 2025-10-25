@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { SampleModalComponent } from 'src/app/shared/components/sample-modal/sample-modal.component';
 
 @Component({
   selector: 'app-unauthorised',
@@ -7,14 +9,8 @@ import { Component } from '@angular/core';
 export class UnauthorisedComponent {
 
 
-     user:any
 
-  constructor(){}
-
-  view(){
-     this.user = localStorage.getItem('role')
-     console.log(this.user);
-     
-  }
+  
+  
 
 }

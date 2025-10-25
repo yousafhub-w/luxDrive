@@ -44,7 +44,7 @@ export class CheckoutComponent implements OnInit {
       fullName: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      email: ['', [Validators.email]],
+      email: [''],
       landmark: ['', Validators.required],
       pinCode: ['', [Validators.required, Validators.pattern(/^[0-9]{6}$/)]],
       paymentMethod: ['', Validators.required],

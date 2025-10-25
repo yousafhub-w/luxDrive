@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/core/services/cart.service';
+import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -8,32 +8,46 @@ import { Router } from '@angular/router';
   templateUrl: './orders.component.html'
 })
 export class OrdersComponent implements OnInit {
-
   orders: any[] = [];
   currentUser: any;
 
   constructor(
-    private cartService: CartService,
+    private http: HttpClient,
     private toast: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    // ✅ Get logged-in user's email from localStorage
+    const userEmail = JSON.parse(localStorage.getItem('currentUser')!)?.email;
 
-    if (!this.currentUser) {
+    if (!userEmail) {
       this.toast.warning('Please login to view your orders');
       this.router.navigate(['/login']);
       return;
     }
 
-    this.loadOrders();
-  }
+    // ✅ Fetch user from db.json by email
+    this.http.get<any[]>(`http://localhost:3000/signUpUsers?email=${userEmail}`).subscribe({
+      next: (res) => {
+        if (res.length === 0) {
+          this.toast.error('User not found');
+          this.router.navigate(['/login']);
+          return;
+        }
 
-  loadOrders(): void {
-    this.cartService.getUserOrders(this.currentUser.id).subscribe({
-      next: orders => this.orders = orders,
-      error: err => this.toast.error('Failed to fetch orders')
+        this.currentUser = res[0];
+
+        // ✅ Load orders
+        this.orders = this.currentUser.orders || [];
+
+        // Sort by newest first
+        this.orders.sort((a, b) => new Date(b.orderedAt).getTime() - new Date(a.orderedAt).getTime());
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.error('Failed to load orders');
+      }
     });
   }
 }

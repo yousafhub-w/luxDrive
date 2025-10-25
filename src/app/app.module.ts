@@ -9,7 +9,6 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SwiperComponent } from './features/swiper/swiper.component';
 import { HomeComponent } from './features/home/home.component';
 import { AboutComponent } from './features/about/about.component';
-import { CartComponent } from './features/cart/cart.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 import { ProductsComponent } from './features/products/products.component';
@@ -25,13 +24,19 @@ import { OrdersComponent } from './features/orders/orders.component';
 import { SearchBarComponent } from './shared/components/navbar/search-bar/search-bar.component';
 import { ContactComponent } from './features/contact/contact.component';
 import { ProfileComponent } from './features/profile/profile.component';
-import { AdminComponent } from './admin/admin.component';
 import { UnauthorisedComponent } from './features/unauthorised/unauthorised.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { UsersComponent } from './admin/users/users.component';
-import { AdminOrdersComponent } from './admin/orders/orders.component';
-import { AdminProductsComponent } from './admin/products/products.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SampleModalComponent } from './shared/components/sample-modal/sample-modal.component';
+import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
+import { AddProductModalComponent } from './shared/components/add-product-modal/add-product-modal.component';
+import { EditProductModalComponent } from './shared/components/edit-product-modal/edit-product-modal.component';
+import { AdminComponent } from './features/admin/admin.component';
+import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
+import { UsersComponent } from './features/admin/users/users.component';
+import { AdminOrdersComponent } from './features/admin/orders/orders.component';
+import { AdminProductsComponent } from './features/admin/products/products.component';
+import { CartComponent } from './features/cart/cart.component';
+import { LoaderComponent } from './features/loader/loader.component';
  
 
 
@@ -42,29 +47,34 @@ import { NgChartsModule } from 'ng2-charts';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent,
-    HomeComponent,
-    ProductsComponent,
-    SwiperComponent,
-    AboutComponent,
-    CartComponent,
-    WishlistComponent,
+    // NavbarComponent,
+    // CartComponent,
+    // HomeComponent,
+    // ProductsComponent,
+    // SwiperComponent,
+    // AboutComponent,
+    // WishlistComponent,
     NotfoundComponent,
-    InteriorComponent,
-    ExteriorComponent,
-    TechComponent,
-    PerformanceComponent,
+    // InteriorComponent,
+    // ExteriorComponent,
+    // TechComponent,
+    // PerformanceComponent,
     CheckoutComponent,
-    OrdersComponent,
+    // OrdersComponent,
     SearchBarComponent,
-    ContactComponent,
-    ProfileComponent,
+    // ContactComponent,
+    // ProfileComponent,
     AdminComponent,
     UnauthorisedComponent,
     DashboardComponent,
     UsersComponent,
     AdminOrdersComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    SampleModalComponent,
+    ConfirmationModalComponent,
+    AddProductModalComponent,
+    EditProductModalComponent,
+    LoaderComponent
  
   ],
   imports: [

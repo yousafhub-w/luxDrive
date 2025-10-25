@@ -1,0 +1,91 @@
+<!-- <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-[500px]">
+    <h2 class="text-xl font-bold mb-4 text-center">Edit Product</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="grid grid-cols-1 gap-3">
+      <input formControlName="name" placeholder="Product Name" class="p-2 border rounded w-full" />
+      <input formControlName="img" placeholder="Image URL" class="p-2 border rounded w-full" />
+      <input formControlName="price" placeholder="Price" class="p-2 border rounded w-full" />
+      <input formControlName="description" placeholder="Description" class="p-2 border rounded w-full" />
+      <input formControlName="alt" placeholder="Alt Text" class="p-2 border rounded w-full" />
+      <input formControlName="category" placeholder="Category" class="p-2 border rounded w-full" />
+      <input formControlName="carbrand" placeholder="Car Brand" class="p-2 border rounded w-full" />
+
+      <div class="flex justify-center gap-4 mt-4">
+        <button type="submit" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2 rounded font-bold transition-colors duration-300">
+          Save
+        </button>
+        <button type="button" (click)="cancel()" class="bg-gray-300 px-5 py-2 rounded font-bold">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div> -->
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start pt-10 z-50">
+  <div class="bg-white p-8 rounded-xl shadow-xl w-[900px] max-w-full">
+    <h2 class="text-2xl font-bold mb-6 text-center">Edit Product</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- Product ID (full width) -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Product ID</label>
+        <input formControlName="id" readonly class="p-3 border rounded w-full bg-gray-100 cursor-not-allowed text-gray-600" />
+      </div>
+
+      <!-- Product Name -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Product Name</label>
+        <input formControlName="name" placeholder="Product Name" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Image URL -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Image URL</label>
+        <input formControlName="img" placeholder="Image URL" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Price -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Price</label>
+        <input formControlName="price" placeholder="Price" type="number" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Category -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Category</label>
+        <input formControlName="category" placeholder="Category" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Car Brand -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Car Brand</label>
+        <input formControlName="carbrand" placeholder="Car Brand" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Description (full width) -->
+      <div>
+        <label class="block font-semibold mb-1 text-gray-700">Description</label>
+        <textarea formControlName="description" placeholder="Description" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none h-24"></textarea>
+      </div>
+
+      <!-- Alt Text (full width) -->
+      <div >
+        <label class="block font-semibold mb-1 text-gray-700">Alt Text</label>
+        <input formControlName="alt" placeholder="Alt Text" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <!-- Buttons (full width, right aligned) -->
+      <div class="md:col-span-2 flex justify-end gap-4 mt-6">
+        <button type="submit" class="bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded font-bold transition-colors duration-300">
+          Save
+        </button>
+        <button type="button" (click)="cancel()" class="bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded font-bold">
+          Cancel
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

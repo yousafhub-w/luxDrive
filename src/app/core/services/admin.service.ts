@@ -32,6 +32,12 @@ export class AdminService {
     return this.http.delete(`${this.apiUrl}/products/${id}`);
   }
 
+  // Update an existing product
+updateProduct(product: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/products/${product.id}`, product);
+}
+
+
   // ---------- ORDERS ----------
   getOrders(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/orders`);

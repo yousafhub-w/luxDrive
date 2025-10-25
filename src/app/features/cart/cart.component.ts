@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/core/services/cart.service';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +16,9 @@ export class CartComponent implements OnInit {
   totalQuantity: number = 0;
   currentUser: any;
 
-  constructor(private cartService: CartService, private router: Router, private toast: ToastrService) {}
+  constructor(private cartService: CartService, private router: Router, private toast: ToastrService, private modal:ModalService) {}
+
+  
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -60,12 +64,21 @@ export class CartComponent implements OnInit {
     this.updateCart();
   }
 
-  removeItem(item: any): void {
-    if (confirm('Remove this item from cart?')) {
-      this.cartItems = this.cartItems.filter(i => i.id !== item.id);
-      this.updateCart();
-    }
-  }
+ removeItem(item: any): void {
+  this.modal
+    .open(ConfirmationModalComponent, {
+      title: 'Remove Item',
+      message: 'Are you sure you want to remove this item from your cart?'
+    })
+    .subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.cartItems = this.cartItems.filter(i => i.id !== item.id);
+        this.updateCart();
+        this.toast.success('Item removed from cart');
+      }
+    });
+}
+
 
   updateCart(): void {
     this.cartService.updateCart(this.currentUser.id, this.cartItems).subscribe({

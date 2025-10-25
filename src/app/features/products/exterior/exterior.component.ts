@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/core/services/cart.service';
+import { ModalService } from 'src/app/core/services/modal.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
+import { SampleModalComponent } from 'src/app/shared/components/sample-modal/sample-modal.component';
 
 @Component({
   selector: 'app-exterior',
@@ -19,7 +21,8 @@ export class ExteriorComponent implements OnInit {
     private taskService: TaskService,
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private router: Router
+    private router: Router,
+    
   ) {}
 
   ngOnInit(): void {
@@ -120,4 +123,12 @@ export class ExteriorComponent implements OnInit {
   goToCart(): void {
     this.router.navigate(['/cart']);
   }
+
+
+
+
+  
 }
+
+
+
