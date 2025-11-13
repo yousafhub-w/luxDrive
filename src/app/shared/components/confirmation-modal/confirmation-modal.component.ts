@@ -8,7 +8,7 @@ import { ModalService } from 'src/app/core/services/modal.service';
 export class ConfirmationModalComponent {
     @Input() title?: string;
   @Input() message?: string;
-  close!: (result?: any) => void; // will be assigned by ModalService
+  close!: (result?: any) => void;
 
   onConfirm() {
     this.close(true);

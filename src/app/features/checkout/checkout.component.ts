@@ -9,12 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent implements OnInit {
-
   checkoutForm!: FormGroup;
   currentUser: any;
   cartItems: any[] = [];
-
-   orderPlaced = false; 
+  orderPlaced = false; 
   formTouched = true;
 
   constructor(
@@ -25,21 +23,15 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get current user
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-
     if (!this.currentUser) {
       this.toast.warning('Please login to continue');
       this.router.navigate(['/login']);
       return;
     }
-
-    // Load cart items
     this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
       this.cartItems = cart;
     });
-
-    // Initialize checkout form
     this.checkoutForm = this.fb.group({
       fullName: ['', Validators.required],
       address: ['', Validators.required],
@@ -54,7 +46,6 @@ export class CheckoutComponent implements OnInit {
       cvv: ['']
     });
 
-    // Dynamic validators for payment method
     this.checkoutForm.get('paymentMethod')?.valueChanges.subscribe(method => {
       const upi = this.checkoutForm.get('upiId');
       const cardNumber = this.checkoutForm.get('cardNumber');
@@ -72,13 +63,11 @@ export class CheckoutComponent implements OnInit {
         expiry?.setValidators([Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]);
         cvv?.setValidators([Validators.required, Validators.pattern(/^[0-9]{3}$/)]);
       } else {
-        // Cash on Delivery
         upi?.clearValidators();
         cardNumber?.clearValidators();
         expiry?.clearValidators();
         cvv?.clearValidators();
       }
-
       upi?.updateValueAndValidity();
       cardNumber?.updateValueAndValidity();
       expiry?.updateValueAndValidity();
@@ -116,5 +105,4 @@ export class CheckoutComponent implements OnInit {
       }
     });
   }
-
 }

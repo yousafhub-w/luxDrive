@@ -1,4 +1,3 @@
-/* Optional if you’re not using Tailwind */
 @keyframes spin {
   to {
     transform: rotate(360deg);

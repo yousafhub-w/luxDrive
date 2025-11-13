@@ -2,13 +2,11 @@
 <app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
 
 <div class=" pt-5 text-white flex flex-col justify-center items-center ">
-  <!-- Title -->
   <div class="text-center mb-5">
     <h1 class="text-5xl font-bold text-yellow-400 mb-2 tracking-wide">Profile</h1>
     <p class="text-gray-400 text-lg">Manage your account details securely</p>
   </div>
 
-  <!-- Profile Card -->
   <div
     *ngIf="user"
     class="w-full max-w-md bg-gray-900/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-yellow-600"
@@ -38,7 +36,6 @@
       </div>
     </div>
 
-    <!-- Action Buttons -->
     <div class="mt-8 flex justify-center gap-4">
       <button
         class="px-6 py-2 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-yellow-400/10"
@@ -49,14 +46,7 @@
     </div>
   </div>
 
-  <!-- No user found -->
   <div *ngIf="!user" class="text-gray-500 text-lg mt-10">
     Loading profile...
   </div>
 </div>
-
-
-
-
-
-<!-- </div> -->

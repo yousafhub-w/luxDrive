@@ -18,8 +18,6 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService, private router: Router, private toast: ToastrService, private modal:ModalService) {}
 
-  
-
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
 
@@ -34,9 +32,6 @@ export class CartComponent implements OnInit {
     if(this.currentUser){
       this.loadCart();
     }
-      
-    
-    
   }
 
   loadCart(): void {
@@ -77,8 +72,7 @@ export class CartComponent implements OnInit {
         this.toast.success('Item removed from cart');
       }
     });
-}
-
+  }
 
   updateCart(): void {
     this.cartService.updateCart(this.currentUser.id, this.cartItems).subscribe({
@@ -103,6 +97,4 @@ export class CartComponent implements OnInit {
     this.toast.info(`Please provide your ADDRESS and PAYMENT`)
     this.router.navigate(['/checkout']);
   }
-
-
 }

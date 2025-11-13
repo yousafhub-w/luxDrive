@@ -35,7 +35,6 @@ export class ExteriorComponent implements OnInit {
     }
   }
 
-  // Load products for logged-in user (filter by Interior category)
   private loadUserProducts(): void {
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
       this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
@@ -47,7 +46,6 @@ export class ExteriorComponent implements OnInit {
             isAdded: cart.some((c: any) => c.id === p.id)
           }));
           this.filteredProducts = [...this.products];
-
           this.cartService.setCartCount(cart.length);
           this.wishlistService.setWishCount(wishlist.length);
         });
@@ -55,7 +53,6 @@ export class ExteriorComponent implements OnInit {
     });
   }
 
-  // Load products for guest user (Interior category only)
   private loadGuestProducts(): void {
     this.taskService.getProducts().subscribe(data => {
       const interiorProducts = data.filter(p => p.category === "Interior Accessories");
@@ -68,12 +65,10 @@ export class ExteriorComponent implements OnInit {
     });
   }
 
-  // Receive filtered search results from Navbar
   updateFilteredProducts(results: any[]): void {
     this.filteredProducts = results.length ? results.filter(p => p.category === "Interior Accessories") : [...this.products];
   }
 
-  // Add product to cart
   addToCart(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to add items to cart');
@@ -93,15 +88,12 @@ export class ExteriorComponent implements OnInit {
     });
   }
 
-  // Toggle wishlist
   toggleWishlist(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to manage wishlist');
       return;
     }
-
     product.wishlist = !product.wishlist;
-
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
       let updatedWishlist: any[] = [];
 
@@ -112,23 +104,13 @@ export class ExteriorComponent implements OnInit {
         updatedWishlist = wishlist.filter((p: any) => p.id !== product.id);
         this.toast.info(`${product.name} removed from wishlist`);
       }
-
       this.wishlistService.updateWishlist(this.currentUser.id, updatedWishlist).subscribe(() => {
         this.wishlistService.setWishCount(updatedWishlist.length);
       });
     });
   }
 
-  // Navigate to cart page
   goToCart(): void {
     this.router.navigate(['/cart']);
   }
-
-
-
-
-  
 }
-
-
-

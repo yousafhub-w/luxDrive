@@ -32,7 +32,6 @@ export class TechComponent implements OnInit {
     }
   }
 
-  // Load products for logged-in user (filter by Interior category)
   private loadUserProducts(): void {
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
       this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
@@ -52,7 +51,6 @@ export class TechComponent implements OnInit {
     });
   }
 
-  // Load products for guest user (Interior category only)
   private loadGuestProducts(): void {
     this.taskService.getProducts().subscribe(data => {
       const interiorProducts = data.filter(p => p.category === "Interior Accessories");
@@ -65,12 +63,10 @@ export class TechComponent implements OnInit {
     });
   }
 
-  // Receive filtered search results from Navbar
   updateFilteredProducts(results: any[]): void {
     this.filteredProducts = results.length ? results.filter(p => p.category === "Interior Accessories") : [...this.products];
   }
 
-  // Add product to cart
   addToCart(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to add items to cart');
@@ -90,7 +86,6 @@ export class TechComponent implements OnInit {
     });
   }
 
-  // Toggle wishlist
   toggleWishlist(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to manage wishlist');
@@ -116,7 +111,6 @@ export class TechComponent implements OnInit {
     });
   }
 
-  // Navigate to cart page
   goToCart(): void {
     this.router.navigate(['/cart']);
   }

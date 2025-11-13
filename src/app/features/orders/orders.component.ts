@@ -18,16 +18,13 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // ✅ Get logged-in user's email from localStorage
     const userEmail = JSON.parse(localStorage.getItem('currentUser')!)?.email;
-
     if (!userEmail) {
       this.toast.warning('Please login to view your orders');
       this.router.navigate(['/login']);
       return;
     }
 
-    // ✅ Fetch user from db.json by email
     this.http.get<any[]>(`http://localhost:3000/signUpUsers?email=${userEmail}`).subscribe({
       next: (res) => {
         if (res.length === 0) {
@@ -35,13 +32,8 @@ export class OrdersComponent implements OnInit {
           this.router.navigate(['/login']);
           return;
         }
-
         this.currentUser = res[0];
-
-        // ✅ Load orders
         this.orders = this.currentUser.orders || [];
-
-        // Sort by newest first
         this.orders.sort((a, b) => new Date(b.orderedAt).getTime() - new Date(a.orderedAt).getTime());
       },
       error: (err) => {

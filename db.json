@@ -358,6 +358,98 @@
             "cvv": ""
           },
           "orderedAt": "2025-10-22T07:09:58.684Z"
+        },
+        {
+          "id": "1761367808968",
+          "items": [
+            {
+              "id": "001",
+              "name": "Kia Ambient LED Lights",
+              "img": "https://www.schott.com/-/media/project/onex/products/a/ambient-light/product-highlights/highlights-right-690x470.jpg?rev=44850f42b49741cf83055ce4e3f70e86",
+              "price": 9532,
+              "description": "Rise hard money suggest church one hair card past.",
+              "alt": "Ambient LED Lights image",
+              "category": "Interior Accessories",
+              "carbrand": "KIA",
+              "wishlist": false,
+              "isAdded": false,
+              "quantity": 1
+            },
+            {
+              "id": "002",
+              "name": "Hyundai Ambient LED Lights",
+              "img": "https://ambientcarvibes.com/cdn/shop/articles/Car_Footwell_lights.jpg?v=1687960643",
+              "price": 1885,
+              "description": "Control especially arm down choose our not.",
+              "alt": "Ambient LED Lights image",
+              "category": "Interior Accessories",
+              "carbrand": "HYUNDAI",
+              "wishlist": false,
+              "isAdded": false,
+              "quantity": 1
+            },
+            {
+              "id": "003",
+              "name": "Toyota Ambient LED Lights",
+              "img": "https://circuitistereo.com/wp-content/uploads/2024/05/Adding-Ambient-Lighting-to-a-Car-scaled-1.jpg",
+              "price": 2763,
+              "description": "Me explain lay lot teacher early response second.",
+              "alt": "Ambient LED Lights image",
+              "category": "Interior Accessories",
+              "carbrand": "TOYOTA",
+              "wishlist": false,
+              "isAdded": false,
+              "quantity": 1
+            }
+          ],
+          "status": "Processing",
+          "orderDetails": {
+            "fullName": "sefse",
+            "address": "fsefsfgs",
+            "phone": "7894561230",
+            "email": "",
+            "landmark": "ftg7utyu",
+            "pinCode": "123456",
+            "paymentMethod": "Cash on Delivery",
+            "upiId": "",
+            "cardNumber": "",
+            "expiry": "",
+            "cvv": ""
+          },
+          "orderedAt": "2025-10-25T04:50:08.968Z"
+        },
+        {
+          "id": "1761572777177",
+          "items": [
+            {
+              "id": "002",
+              "name": "Hyundai Ambient LED Lights",
+              "img": "https://ambientcarvibes.com/cdn/shop/articles/Car_Footwell_lights.jpg?v=1687960643",
+              "price": 1885,
+              "description": "Control especially arm down choose our not.",
+              "alt": "Ambient LED Lights image",
+              "category": "Interior Accessories",
+              "carbrand": "HYUNDAI",
+              "wishlist": false,
+              "isAdded": false,
+              "quantity": 1
+            }
+          ],
+          "status": "Processing",
+          "orderDetails": {
+            "fullName": "weer",
+            "address": "sfgsgfsrz",
+            "phone": "7894561234",
+            "email": "",
+            "landmark": "Kozhikode",
+            "pinCode": "124578",
+            "paymentMethod": "Cash on Delivery",
+            "upiId": "",
+            "cardNumber": "",
+            "expiry": "",
+            "cvv": ""
+          },
+          "orderedAt": "2025-10-27T13:46:17.177Z"
         }
       ]
     },
@@ -378,7 +470,7 @@
       "email": "b@gmail.com",
       "password": "b",
       "role": "user",
-      "status": "inactive",
+      "status": "active",
       "cart": [],
       "wishList": [],
       "orders": [
@@ -690,6 +782,17 @@
           "orderedAt": "2025-10-22T11:03:24.890Z"
         }
       ]
+    },
+    {
+      "id": "f5ed",
+      "fullName": "Vyshna",
+      "email": "vyshna@gmail.com",
+      "password": "vyshna1",
+      "role": "user",
+      "status": "active",
+      "cart": [],
+      "wishList": [],
+      "orders": []
     }
   ],
   "products": [

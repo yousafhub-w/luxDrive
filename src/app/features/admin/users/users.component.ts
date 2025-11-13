@@ -10,7 +10,6 @@ import { AdminService } from 'src/app/core/services/admin.service';
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
-
   users: any[] = [];
 
   constructor(private adminService: AdminService, private toast: ToastrService) {}
@@ -28,7 +27,7 @@ export class UsersComponent implements OnInit {
   toggleStatus(user: any) {
     const newStatus = user.status === 'active' ? 'inactive' : 'active';
     this.adminService.updateUserStatus(user.id, newStatus).subscribe(res => {
-      user.status = newStatus; // update local array
+      user.status = newStatus;
       this.toast.success(`User ${user.fullName} is now ${newStatus}`);
     }, err => {
       this.toast.error('Something went wrong!');

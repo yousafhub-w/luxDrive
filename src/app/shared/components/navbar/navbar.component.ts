@@ -30,39 +30,30 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')!)
-  : null;
-  this.isLoggedIn = !!this.currentUser;
-
-
+    ? JSON.parse(localStorage.getItem('currentUser')!)
+    : null;
+    this.isLoggedIn = !!this.currentUser;
     this.loadCartCount();
     this.loadWishlistCount();
-
     this.cartService.cartCount$.subscribe(count => this.cartCount = count);
     this.wishlistService.wishCount$.subscribe(count => this.wishlistCount = count);
-
     this.taskService.getProducts().subscribe(data => {
-      this.products = data;
-      this.filteredProducts = [...this.products];
+    this.products = data;
+    this.filteredProducts = [...this.products];
     });
   }
 
   toggleDropdown() { this.dropDown = !this.dropDown; }
   toggleProfile() { this.profileDropDown = !this.profileDropDown; }
 
-  // Handle search bar input
   searchProducts(event: Event): void {
   const input = event.target as HTMLInputElement | null;
-  if (!input) return; // null safety
-
+  if (!input) return;
   const query = input.value.trim().toLowerCase();
-
-  // Filter products
   this.filteredProducts = this.products.filter(p =>
     p.name.toLowerCase().includes(query)
   );
-}
-
+  }
 
   cartButton() {
     if (this.currentUser) this.router.navigate(['/cart']);

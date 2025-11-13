@@ -17,12 +17,10 @@ export class AdminOrdersComponent implements OnInit {
     this.loadOrders();
   }
 
-  // ✅ Load all users and flatten their orders
   loadOrders() {
     this.adminService.getUsers().subscribe({
       next: (users) => {
         this.orders = [];
-
         users.forEach((user: any) => {
           if (user.orders && user.orders.length > 0) {
             user.orders.forEach((order: any) => {
@@ -40,11 +38,8 @@ export class AdminOrdersComponent implements OnInit {
     });
   }
 
-  // ✅ Change order status (updates in db.json)
   changeStatus(order: any, newStatus: string) {
     if (!newStatus) return;
-
-    // Fetch the specific user from db
     this.adminService.getUserById(order.userId).subscribe({
       next: (user) => {
         const updatedOrders = user.orders.map((o: any) => {
@@ -55,11 +50,8 @@ export class AdminOrdersComponent implements OnInit {
         });
 
         const updatedUser = { ...user, orders: updatedOrders };
-
-        // ✅ Update user orders back to db
         this.adminService.updateUserOrders(order.userId, updatedUser).subscribe({
           next: () => {
-            // ✅ Update local UI instantly
             this.adminService.updateOrderStatus(order.id, newStatus)
               .subscribe(() => {
                 order.status = newStatus;

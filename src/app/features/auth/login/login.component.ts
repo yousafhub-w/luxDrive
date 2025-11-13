@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit{
   if (this.loginForm.invalid) {
     return;
   }
-
   this.http.get<any[]>('http://localhost:3000/signUpUsers').subscribe({
     next: (users) => {
       const foundAdmin = users.find(
@@ -72,9 +71,8 @@ export class LoginComponent implements OnInit{
       }
     },
     error: () => {
-      alert('Something went wrong ⚠️');
+      this.toast.error('Something went wrong ⚠️');
     },
-  });
-}
-
+   });
+  }
 }

@@ -8,35 +8,28 @@ import { AdminService } from 'src/app/core/services/admin.service';
   templateUrl: './admin.component.html',
 })
 export class AdminComponent implements OnInit {
-
-  
-
   productsCount = 0;
   usersCount = 0;
   ordersCount = 0;
-
-  // Bar Chart
   public barChartType: ChartType = 'bar';
   public barChartOptions: ChartOptions = { responsive: true };
-
   public barChartData: ChartData<'bar'> = {
     labels: ['Products', 'Users', 'Orders'],
     datasets: [
       {
         label: 'Count',
-        data: [0, 0, 0], // initial values
+        data: [0, 0, 0],
         backgroundColor: ['#f59e0b', '#10b981', '#3b82f6'],
       },
     ],
   };
 
-  // Donut Chart
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: ['Products', 'Users', 'Orders'],
     datasets: [
       {
-        data: [0, 0, 0], // initial values
+        data: [0, 0, 0],
         backgroundColor: ['#f59e0b', '#10b981', '#3b82f6'],
       },
     ],
@@ -75,7 +68,6 @@ export class AdminComponent implements OnInit {
       this.ordersCount,
     ];
 
-    
   }
 
   navigateUsers(){

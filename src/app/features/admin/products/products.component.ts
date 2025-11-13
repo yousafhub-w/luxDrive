@@ -13,6 +13,7 @@ import { EditProductModalComponent } from 'src/app/shared/components/edit-produc
   templateUrl: './products.component.html'
 })
 export class AdminProductsComponent implements OnInit {
+
   products: any[] = [];
   productForm!: FormGroup;
 
@@ -28,7 +29,6 @@ export class AdminProductsComponent implements OnInit {
     
   }
 
-
   openAddProductModal(){
     this.modal.open(AddProductModalComponent).subscribe((result) => {
       if (result){
@@ -41,7 +41,6 @@ export class AdminProductsComponent implements OnInit {
   openEditProductModal(product: any) {
   this.modal.open(EditProductModalComponent, { product }).subscribe((updatedProduct) => {
     if (updatedProduct) {
-      // Update product in local array
       const index = this.products.findIndex(p => p.id === updatedProduct.id);
       if (index > -1) {
         this.products[index] = updatedProduct;
@@ -49,30 +48,23 @@ export class AdminProductsComponent implements OnInit {
       this.products.sort((a: any, b: any) => Number(b.id) - Number(a.id));
     }
   });
-}
+ }
 
   loadProducts() {
   this.adminService.getProducts().subscribe(res => {
-    // Sort in descending order by ID
     this.products = res.sort((a: any, b: any) => b.id - a.id);
   });
-}
-
+  }
 
   addProduct() {
   if (this.productForm.invalid) return;
-
   const newProduct = {
-    
     ...this.productForm.value
   };
-
   this.adminService.addProduct(newProduct).subscribe({
     next: (res) => {
       this.products.push(res);
-      // 🔹 Sort in descending order immediately after adding
       this.products.sort((a: any, b: any) => b.id - a.id);
-
       this.toast.success('Product added successfully!');
       this.productForm.reset();
     },
@@ -80,8 +72,7 @@ export class AdminProductsComponent implements OnInit {
       this.toast.error('Failed to add product.');
     }
   });
-}
-
+ }
 
   deleteProduct(product: any) {
   this.modal
@@ -91,7 +82,6 @@ export class AdminProductsComponent implements OnInit {
     })
     .subscribe((confirmed: boolean) => {
       if (confirmed) {
-        // Proceed only if user confirmed
         this.adminService.deleteProduct(product.id).subscribe({
           next: () => {
             this.products = this.products.filter(p => p.id !== product.id);
@@ -105,6 +95,5 @@ export class AdminProductsComponent implements OnInit {
         this.toast.info('Deletion cancelled.');
       }
     });
-}
-
+  }
 }

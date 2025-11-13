@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit {
             isAdded: cart.some((c: any) => c.id === p.id)
           }));
           this.filteredProducts = [...this.products];
-
           this.cartService.setCartCount(cart.length);
           this.wishlistService.setWishCount(wishlist.length);
         });
@@ -67,7 +66,6 @@ export class ProductsComponent implements OnInit {
       this.toast.warning('Please log in to add items to cart');
       return;
     }
-
     this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
       const existing = cart.find((item: any) => item.id === product.id);
       if (existing) existing.quantity += 1;
@@ -86,9 +84,7 @@ export class ProductsComponent implements OnInit {
       this.toast.warning('Please log in to manage wishlist');
       return;
     }
-
     product.wishlist = !product.wishlist;
-
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
       let updatedWishlist: any[] = [];
 

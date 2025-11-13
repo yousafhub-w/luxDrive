@@ -24,7 +24,6 @@ export class PerformanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
-
     if (this.currentUser) {
       this.loadUserProducts();
     } else {
@@ -32,7 +31,6 @@ export class PerformanceComponent implements OnInit {
     }
   }
 
-  // Load products for logged-in user (filter by Interior category)
   private loadUserProducts(): void {
     this.wishlistService.getWishlist(this.currentUser.id).subscribe(wishlist => {
       this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
@@ -52,7 +50,6 @@ export class PerformanceComponent implements OnInit {
     });
   }
 
-  // Load products for guest user (Interior category only)
   private loadGuestProducts(): void {
     this.taskService.getProducts().subscribe(data => {
       const interiorProducts = data.filter(p => p.category === "Interior Accessories");
@@ -65,24 +62,22 @@ export class PerformanceComponent implements OnInit {
     });
   }
 
-  // Receive filtered search results from Navbar
   updateFilteredProducts(results: any[]): void {
     this.filteredProducts = results.length ? results.filter(p => p.category === "Interior Accessories") : [...this.products];
   }
 
-  // Add product to cart
   addToCart(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to add items to cart');
       return;
     }
 
-    this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
+      this.cartService.getUserCart(this.currentUser.id).subscribe(cart => {
       const existing = cart.find((item: any) => item.id === product.id);
       if (existing) existing.quantity += 1;
       else cart.push({ ...product, quantity: 1 });
 
-      this.cartService.addToCart(this.currentUser.id, cart).subscribe(() => {
+        this.cartService.addToCart(this.currentUser.id, cart).subscribe(() => {
         product.isAdded = true;
         this.cartService.setCartCount(cart.length);
         this.toast.success(`${product.name} added to cart`);
@@ -90,7 +85,6 @@ export class PerformanceComponent implements OnInit {
     });
   }
 
-  // Toggle wishlist
   toggleWishlist(product: any): void {
     if (!this.currentUser) {
       this.toast.warning('Please log in to manage wishlist');
@@ -116,7 +110,6 @@ export class PerformanceComponent implements OnInit {
     });
   }
 
-  // Navigate to cart page
   goToCart(): void {
     this.router.navigate(['/cart']);
   }

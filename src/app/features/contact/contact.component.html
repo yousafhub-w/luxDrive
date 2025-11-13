@@ -1,76 +1,69 @@
 <div class="bg-black min-h-screen pt-2"> 
-<app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
-<div class="min-h-screen bg-black text-white flex flex-col justify-center items-center px-6 py-8">
-  <!-- Section Title -->
-  <div class="max-w-3xl text-center mb-12">
-    <h1 class="text-5xl font-bold text-yellow-400 mb-4 tracking-wide">Contact Us</h1>
-    <p class="text-gray-400 text-lg">
-      Have questions, feedback, or need assistance?  
-      We'd love to hear from you. Our team will get back to you as soon as possible.
-    </p>
-  </div>
+  
+  <app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
 
-  <!-- Contact Form -->
-  <div class="w-full max-w-3xl bg-gray-900/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-700">
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Name -->
-      <div class="col-span-1">
-        <label class="block text-yellow-400 font-semibold mb-2">Full Name</label>
-        <input
-          type="text"
-          placeholder="Your Name"
-          class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        />
+      <div class="min-h-screen bg-black text-white flex flex-col justify-center items-center px-6 py-8">
+        <div class="max-w-3xl text-center mb-12">
+          <h1 class="text-5xl font-bold text-yellow-400 mb-4 tracking-wide">Contact Us</h1>
+          <p class="text-gray-400 text-lg">
+            Have questions, feedback, or need assistance?  
+            We'd love to hear from you. Our team will get back to you as soon as possible.
+          </p>
+        </div>
+
+        <div class="w-full max-w-3xl bg-gray-900/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-700">
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-1">
+              <label class="block text-yellow-400 font-semibold mb-2">Full Name</label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </div>
+
+            <div class="col-span-1">
+              <label class="block text-yellow-400 font-semibold mb-2">Email Address</label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+              <label class="block text-yellow-400 font-semibold mb-2">Subject</label>
+              <input
+                type="text"
+                placeholder="What is this about?"
+                class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </div>
+
+            <div class="col-span-1 md:col-span-2">
+              <label class="block text-yellow-400 font-semibold mb-2">Message</label>
+              <textarea
+                rows="5"
+                placeholder="Write your message here..."
+                class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              ></textarea>
+            </div>
+
+            <div class="col-span-1 md:col-span-2 text-center">
+              <button
+                type="button"
+                class="px-10 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-yellow-400/50"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="mt-12 text-center text-gray-400">
+          <p class="text-lg mb-2">📍 789 Luxury Street, Auto City, India</p>
+          <p class="text-lg mb-2">📞 +91 98765 43210</p>
+          <p class="text-lg">📧 support@luxcaraccessories.com</p>
+        </div>
       </div>
-
-      <!-- Email -->
-      <div class="col-span-1">
-        <label class="block text-yellow-400 font-semibold mb-2">Email Address</label>
-        <input
-          type="email"
-          placeholder="you@example.com"
-          class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        />
-      </div>
-
-      <!-- Subject -->
-      <div class="col-span-1 md:col-span-2">
-        <label class="block text-yellow-400 font-semibold mb-2">Subject</label>
-        <input
-          type="text"
-          placeholder="What is this about?"
-          class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        />
-      </div>
-
-      <!-- Message -->
-      <div class="col-span-1 md:col-span-2">
-        <label class="block text-yellow-400 font-semibold mb-2">Message</label>
-        <textarea
-          rows="5"
-          placeholder="Write your message here..."
-          class="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        ></textarea>
-      </div>
-
-      <!-- Button -->
-      <div class="col-span-1 md:col-span-2 text-center">
-        <button
-          type="button"
-          class="px-10 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-yellow-400/50"
-        >
-          Send Message
-        </button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Contact Info -->
-  <div class="mt-12 text-center text-gray-400">
-    <p class="text-lg mb-2">📍 789 Luxury Street, Auto City, India</p>
-    <p class="text-lg mb-2">📞 +91 98765 43210</p>
-    <p class="text-lg">📧 support@luxcaraccessories.com</p>
-  </div>
-</div>
-
 </div>

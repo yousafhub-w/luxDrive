@@ -1,33 +1,25 @@
-
 <div class="bg-black min-h-screen pt-2"> 
   <app-navbar class="sticky top-0 left-0 w-full z-50 bg-black backdrop-blur-md"></app-navbar>
-
-
-
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center text-white bg-black py-10">
-  
-
-  <div class="space-y-2 transition-transform duration-300">
-    <div class="flex justify-center items-center gap-2">
-      <i class="fa-solid fa-couch text-yellow-400 text-3xl"></i>
-      <h2 class="text-2xl font-[Cinzel] text-amber-500">Exterior Excellence</h2>
-    </div>
-    <p class="text-gray-400 text-sm italic">Turn every drive into a grand entrance.</p>
-  </div>
-</div>  
+      <div class="space-y-2 transition-transform duration-300">
+        <div class="flex justify-center items-center gap-2">
+          <i class="fa-solid fa-couch text-yellow-400 text-3xl"></i>
+          <h2 class="text-2xl font-[Cinzel] text-amber-500">Exterior Excellence</h2>
+        </div>
+        <p class="text-gray-400 text-sm italic">Turn every drive into a grand entrance.</p>
+      </div>
+  </div>  
 
 
 
 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
   <div
     *ngFor="let product of filteredProducts"
-    class="bg-gray-900 text-white rounded-lg shadow-lg p-4 pt-0 relative group hover:-translate-y-2 transition-transform duration-300"
-  >
+    class="bg-gray-900 text-white rounded-lg shadow-lg p-4 pt-0 relative group hover:-translate-y-2 transition-transform duration-300">
 
     <button
       (click)="toggleWishlist(product)"
-      class="absolute right-1 text-xl transition-transform duration-200 hover:scale-110"
-    >
+      class="absolute right-1 text-xl transition-transform duration-200 hover:scale-110">
       <i
         class="fa-heart"
         [ngClass]="{
@@ -41,8 +33,7 @@
       <img
         [src]="product.img"
         [alt]="product.alt"
-        class="w-80 h-44 object-cover rounded mb-4"
-      />
+        class="w-80 h-44 object-cover rounded mb-4"/>
 
       <h2 class="text-lg font-bold">{{ product.name }}</h2>
       <p class="text-sm text-gray-400 mb-2">{{ product.description }}</p>
@@ -54,7 +45,6 @@
         </span>
       </div>
 
-      <!-- Add / Go to Cart -->
       <button
         *ngIf="!product.isAdded"
         (click)="addToCart(product)"
@@ -73,10 +63,3 @@
     </div>
   </div>
 </div>
-
-    
-
-   
-
-
- 

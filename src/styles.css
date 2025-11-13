@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Make toastr appear on top of all content */
 #toast-container {
   z-index: 999999 !important;
 }
@@ -11,35 +9,28 @@
 
 body {
   overflow: visible;
-  /* position: relative; */
 }
 
-
-/* ✅ For Google Chrome and Chromium browsers */
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Custom Scrollbar (WebKit browsers: Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Scrollbar track (background) */
 ::-webkit-scrollbar-track {
-  background: #0a0a0a; /* Dark background */
+  background: #0a0a0a;
   border-radius: 10px;
 }
 
-/* Scrollbar thumb (scroll handle) */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D4AF37, #a67c00); /* Gold gradient */
+  background: linear-gradient(180deg, #D4AF37, #a67c00);
   border-radius: 10px;
 }
 
-/* Thumb hover effect */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ffcc33, #b8860b);
 }

@@ -9,13 +9,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditProductModalComponent {
   @Input() close!: (result?: any) => void;
-  @Input() product: any; // product to edit
+  @Input() product: any;
   productForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private adminService: AdminService, private toast: ToastrService) {}
 
   ngOnInit() {
-    // Initialize form with existing product values
     this.productForm = this.fb.group({
       id: [this.product.id, Validators.required],
       name: [this.product.name, Validators.required],
@@ -30,11 +29,10 @@ export class EditProductModalComponent {
 
   saveProduct() {
     if (this.productForm.invalid) return;
-
     this.adminService.updateProduct(this.productForm.value).subscribe({
       next: (res) => {
         this.toast.success('Product updated successfully!');
-        this.close(res); // return updated product to parent
+        this.close(res); 
       },
       error: () => {
         this.toast.error('Failed to update product.');

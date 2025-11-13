@@ -10,7 +10,6 @@ export class CartService {
 
   private baseUrl = 'http://localhost:3000/signUpUsers';
 
-
   private cartCountSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   cartCount$ = this.cartCountSubject.asObservable();
   cartUpdated$ = new BehaviorSubject<void>(undefined);
@@ -42,9 +41,6 @@ export class CartService {
       tap(() => this.cartUpdated$.next())
     );
   }
-
-  /** ------------------ Orders functionality ------------------ */
-
 
   getUserOrders(userId: string): Observable<any[]> {
     return this.http.get<any>(`${this.baseUrl}/${userId}`).pipe(

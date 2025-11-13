@@ -32,7 +32,7 @@ export class AddProductModalComponent {
     this.adminService.addProduct(newProduct).subscribe({
       next: (res) => {
         this.toast.success('Product added successfully!');
-        this.close(res); // return the new product to parent
+        this.close(res);
       },
       error: () => {
         this.toast.error('Failed to add product.');

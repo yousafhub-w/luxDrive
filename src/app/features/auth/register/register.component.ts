@@ -75,9 +75,5 @@ export class RegisterComponent implements OnInit{
   }, err => {
     this.toast.error('Something went wrong')
   });
-
-
-  
-
  }
 }

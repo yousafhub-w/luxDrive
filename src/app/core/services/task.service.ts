@@ -10,9 +10,8 @@ export class TaskService {
 
     private apiUrlProducts = 'http://localhost:3000/products';
    
-
     constructor(private http: HttpClient) {}
-
+    
     getProducts():Observable<any[]>{
       return this.http.get<any[]>(this.apiUrlProducts);
     }

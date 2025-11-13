@@ -15,7 +15,6 @@ export class SwiperComponent implements OnInit, OnDestroy{
   currentSlide = 0;
   private slideInterval: any;
 
-
   ngOnInit() {
     this.startAutoSlide();
   }

@@ -9,33 +9,29 @@ import { AdminService } from 'src/app/core/services/admin.service';
 })
 export class DashboardComponent implements OnInit {
 
-
   productsCount = 0;
   usersCount = 0;
   ordersCount = 0;
 
-  // Bar Chart
   public barChartType: ChartType = 'bar';
   public barChartOptions: ChartOptions = { responsive: true };
-
   public barChartData: ChartData<'bar'> = {
     labels: ['Products', 'Users', 'Orders'],
     datasets: [
       {
         label: 'Count',
-        data: [0, 0, 0], // initial values
+        data: [0, 0, 0],
         backgroundColor: ['#f59e0b', '#10b981', '#3b82f6'],
       },
     ],
   };
 
-  // Donut Chart
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: ['Products', 'Users', 'Orders'],
     datasets: [
       {
-        data: [0, 0, 0], // initial values
+        data: [0, 0, 0],
         backgroundColor: ['#f59e0b', '#10b981', '#3b82f6'],
       },
     ],
@@ -61,14 +57,12 @@ export class DashboardComponent implements OnInit {
   }
 
   updateCharts() {
-    // Update Bar Chart
     this.barChartData.datasets[0].data = [
       this.productsCount,
       this.usersCount,
       this.ordersCount,
     ];
 
-    // Update Donut Chart
     this.doughnutChartData.datasets[0].data = [
       this.productsCount,
       this.usersCount,

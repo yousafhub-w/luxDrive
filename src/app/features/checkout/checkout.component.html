@@ -5,43 +5,36 @@
 
   <form [formGroup]="checkoutForm" (ngSubmit)="confirmOrder()" class="max-w-3xl mx-auto bg-gray-900/70 p-8 rounded-xl shadow-lg space-y-6">
 
-    <!-- Full Name -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Full Name</label>
       <input type="text" formControlName="fullName" placeholder="John Doe" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
     </div>
 
-    <!-- Address -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Address</label>
       <textarea formControlName="address" rows="3" placeholder="Street, City" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400"></textarea>
     </div>
 
-    <!-- Phone -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Phone Number</label>
       <input type="tel" formControlName="phone" placeholder="9876543210" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
     </div>
 
-    <!-- Email (Optional) -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Email (Optional)</label>
       <input type="email" formControlName="email" placeholder="example@gmail.com" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
     </div>
 
-    <!-- Landmark -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Landmark</label>
       <input type="text" formControlName="landmark" placeholder="Near XYZ" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
     </div>
 
-    <!-- Pin Code -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-1">Pin Code</label>
       <input type="text" formControlName="pinCode" placeholder="123456" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />
     </div>
 
-    <!-- Payment Method -->
     <div>
       <label class="block text-yellow-400 font-semibold mb-2">Payment Method</label>
       <div class="flex flex-col gap-2">
@@ -57,7 +50,6 @@
       </div>
     </div>
 
-    <!-- Conditional Fields -->
     <div *ngIf="checkoutForm.get('paymentMethod')?.value === 'UPI'">
       <label class="block text-yellow-400 font-semibold mb-1">UPI ID</label>
       <input type="text" formControlName="upiId" placeholder="example@upi" class="w-full p-3 rounded bg-gray-800 text-white focus:outline-yellow-400" />

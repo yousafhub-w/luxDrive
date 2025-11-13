@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    // Fetch full user details from fake API
     this.http.get(`${this.apiUrl}/${currentUser.id}`).subscribe({
       next: (data: any) => {
         this.user = data;
@@ -32,4 +31,3 @@ export class ProfileComponent implements OnInit {
     });
   }
 }
-

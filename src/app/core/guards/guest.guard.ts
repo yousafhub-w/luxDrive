@@ -10,11 +10,8 @@ export class GuestGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    
     const user = localStorage.getItem('currentUser');
     const admin = localStorage.getItem('role')
-
-      
 
     if ( user ) {
        this.router.navigate(['/']);
@@ -27,4 +24,3 @@ export class GuestGuard implements CanActivate {
     }
   }
 }
-
